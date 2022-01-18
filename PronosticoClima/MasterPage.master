@@ -1,0 +1,90 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    
+    <!--bootstrap css-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!--data tables css-->
+    <link href="datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!--fonteawesome css-->
+    <link href="fontawesome/css/all.css" rel="stylesheet" />
+
+    <!--custome css-->
+    <link href="css/customStylesSheet.css" rel="stylesheet" />
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+    <div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Pronostico&Clima</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" >Pronosticos</a>
+                            </li>
+                    
+              
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        <!--Main Content PlaceHolder-->
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+     
+            <p>
+                <br />
+            </p>
+     
+        </asp:ContentPlaceHolder>
+
+        <!--Main Content PlaceHolder-->
+        <!--Foooter-->
+            <div> <center > 
+            <asp:LinkButton ID="btnLinkVolver" runat="server" PostBackUrl="~/Default.aspx">Volver</asp:LinkButton>
+              </center > 
+        </div>
+                
+        
+        <footer>
+            <div id="footer1" class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+
+                        <p>&copy All rights Reserved. </p>
+
+                    </div>
+                </div>
+            </div>
+            <div id="footer2" class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                        <a class="footerlinks" href="#" target="_blank">Pronostico&Clima</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!--Footer-->
+
+    </div>
+    </form>
+</body>
+</html>
