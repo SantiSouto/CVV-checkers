@@ -16,8 +16,11 @@
     <!--custome css-->
     <link href="css/customStylesSheet.css" rel="stylesheet" />
 
+    <!-- jquery-->
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+     <!-- popper js-->
     <script src="bootstrap/js/popper.min.js"></script>
+     <!-- bootstrap js-->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <asp:ContentPlaceHolder id="head" runat="server">
@@ -30,32 +33,74 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Pronostico&Clima</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                      
+                    <a class="navbar-brand" href="#"/>
+             
+                      <!--bootstrap: toggle button lo que hace la ventana responsive y permite que se adapte al tamaño de pantalla--->
+              
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                       <span class="navbar-toggler-icon"></span>
+                       </button>
+
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" >Pronosticos</a>
+                                <a class="nav-link" href="Default.aspx"  >
+                                    <img src="Images/WeatherForecast.png" alt="" width="40" height="34" class="d-inline-block align-text-top">
+                                    <h2>Home</h2>
+                                    
+
+                                </a>
                             </li>
-                    
+                                <li class="nav-item">
+                                <a class="nav-link" >Países</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" >Ciudades</a>
+                            </li>
+                                <li class="nav-item">
+                                <a class="nav-link" >Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" >Registrar Pronóstico</a>
+                            </li>
+                                <li class="nav-item">
+                                <a class="nav-link" >Pronósticos por Ciudad</a>
+                            </li>
+                                <li class="nav-item">
+                                <a class="nav-link" >Pronósticos por Día</a>
+                            </li>
               
+                        </ul>
+
+                        <ul  class="navbar-nav">
+                            <li class="nav-item active">
+                                <asp:LinkButton CssClass="nav-link" ID="LinkButtonLogin" runat="server" PostBackUrl="~/Login.aspx"
+                                 > Login </asp:LinkButton>
+                               </li>
+                              <li class="nav-item active">
+                                <asp:LinkButton CssClass="nav-link" ID="LinkButtonLogout" runat="server"
+                                 > Logout </asp:LinkButton>
+                               </li>
+                              <li class="nav-item active">
+                                <asp:LinkButton CssClass="nav-link" ID="LinkButtonUsuario" runat="server"
+                                 > Bienvenido Usuario </asp:LinkButton>
+                               </li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
         <!--Main Content PlaceHolder-->
+        <div>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
      
-            <p>
-                <br />
-            </p>
-     
         </asp:ContentPlaceHolder>
-
+        </div>
         <!--Main Content PlaceHolder-->
+       
+        
+        
         <!--Foooter-->
             <div> <center > 
             <asp:LinkButton ID="btnLinkVolver" runat="server" PostBackUrl="~/Default.aspx">Volver</asp:LinkButton>
