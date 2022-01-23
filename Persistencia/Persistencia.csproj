@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conexion.cs" />
     <Compile Include="PerCiudad.cs" />
     <Compile Include="PerPais.cs" />
     <Compile Include="PerPronostico.cs" />
