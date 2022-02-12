@@ -1,5 +1,8 @@
 {
-  "ExpandedNodes": [],
-  "SelectedNode": "\\PronosticoClima.sln",
+  "ExpandedNodes": [
+    "",
+    "\\Entidades"
+  ],
+  "SelectedNode": "\\Entidades\\Usuario.cs",
   "PreviewInSolutionExplorer": false
 }

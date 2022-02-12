@@ -127,7 +127,8 @@ namespace Persistencia
 
                Ciudad ciudad = new Ciudad(  reader["CODIGOCIUDAD"].ToString(),paisbuscado, reader["NOMBRE"].ToString());
 
-               ciudad.Add(ciudades);
+
+                ciudades.Add(ciudad);
 
             }
             reader.Close();

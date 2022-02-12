@@ -34,7 +34,10 @@ namespace Entidades
             get { return _contrasenia; }
             set
             {
-                if ();
+                if (value.Length > 10)
+                { throw new Exception("\n" + "----LA CONTRASEÑA NO PUEDE TENER MAS DE 10 CARACTERES----"); }
+                if (string.IsNullOrEmpty(value.Trim()))
+                    throw new Exception("\n" + "----DEBE INGRESAR UNA CONTRASEÑA-----");
 
                 _contrasenia = value;
             }

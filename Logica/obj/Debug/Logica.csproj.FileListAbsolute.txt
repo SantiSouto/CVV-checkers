@@ -1,0 +1,11 @@
+C:\Users\Santiago\Desktop\proyecto\Logica\bin\Debug\Logica.dll
+C:\Users\Santiago\Desktop\proyecto\Logica\bin\Debug\Logica.pdb
+C:\Users\Santiago\Desktop\proyecto\Logica\bin\Debug\Entidades.dll
+C:\Users\Santiago\Desktop\proyecto\Logica\bin\Debug\Persistencia.dll
+C:\Users\Santiago\Desktop\proyecto\Logica\bin\Debug\Entidades.pdb
+C:\Users\Santiago\Desktop\proyecto\Logica\bin\Debug\Persistencia.pdb
+C:\Users\Santiago\Desktop\proyecto\Logica\obj\Debug\Logica.csproj.AssemblyReference.cache
+C:\Users\Santiago\Desktop\proyecto\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\Users\Santiago\Desktop\proyecto\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\Users\Santiago\Desktop\proyecto\Logica\obj\Debug\Logica.dll
+C:\Users\Santiago\Desktop\proyecto\Logica\obj\Debug\Logica.pdb

@@ -8,6 +8,6 @@ namespace Persistencia
 {
     internal class Conexion
     {
-        public static readonly string connectionString = "Server=DESKTOP-4E8OCHQ\\SQLEXPRESS;DATABASE=CLIMA;trusted_Connection=true;";
+        public static readonly string connectionString = "Server=DESKTOP-SCQMCFO\\SQLEXPRESS;DATABASE=CLIMA;trusted_Connection=true;";
     }
 }
