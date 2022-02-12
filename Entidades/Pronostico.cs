@@ -109,7 +109,7 @@ namespace Entidades
             {
                 if (string.IsNullOrEmpty(value.Trim()))
                 { throw new Exception("\n" + "----DEBE HABER UN TIPO DE CIELO----"); }
-                else if(value.Trim().ToUpper() != "NUBOSO" && value.Trim().ToUpper() != "PARCIALMENTE NUBOSO" && vvalue.Trim().ToUpper() != "DESPEJADO")
+                else if(value.Trim().ToUpper() != "NUBOSO" && value.Trim().ToUpper() != "PARCIALMENTE NUBOSO" && value.Trim().ToUpper() != "DESPEJADO")
                 { throw new Exception("\n" + "----eL TIPO DE CIELO NO ES VALIDO----"); }
 
                 _tipodecielo = value;
