@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    class Usuario
+   public class Usuario
     {
 
         private string _nombrelogueo;
-        private int _contrasenia;
+        private string _contrasenia;
         private string _nombre;
         private string _apellido;
 
@@ -21,17 +21,21 @@ namespace Entidades
             {
                 if (value == string.Empty)
                     throw new Exception("\n" + "----DEBE HABER UN NOMBRE DE LOGUEO----");
+                if (value.Length > 50)
+                    throw new Exception("\n" + "EL NOMBRE DE LOGUEO NO PUEDE TENER MAS DE 50 CARACTERES");
                 _nombrelogueo = value;
             }
 
 
         }
 
-        public int Contrasenia
+        public string Contrasenia
         {
             get { return _contrasenia; }
             set
             {
+                if ();
+
                 _contrasenia = value;
             }
 
@@ -43,8 +47,10 @@ namespace Entidades
             get { return _nombre; }
             set
             {
-                if (value == null)
+                if (string.IsNullOrEmpty(value.Trim()))
                     throw new Exception("\n" + "----DEBE INGRESAR UN NOMBRE-----");
+                if (value.Length > 30)
+                    throw new Exception("\n" + "EL NOMBRE  NO PUEDE TENER MAS DE 30 CARACTERES");
                 _nombre = value;
             }
 
@@ -55,14 +61,16 @@ namespace Entidades
             get { return _apellido; }
             set
             {
-                if (value == null)
+                if (string.IsNullOrEmpty(value.Trim()))
                     throw new Exception("\n" + "----DEBE INGRESAR UN APELLIDO-----");
+                if (value.Length > 30)
+                    throw new Exception("\n" + "EL APELLIDO  NO PUEDE TENER MAS DE 30 CARACTERES");
                 _apellido = value;
             }
 
         }
 
-        public Usuario(string nombrelogueo, int contrasenia, string nombre, string apellido)
+        public Usuario(string nombrelogueo, string contrasenia, string nombre, string apellido)
         {
             NombreLogueo = nombrelogueo;
             Contrasenia = contrasenia;

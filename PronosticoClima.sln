@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PronosticoClima", "PronosticoClima\", "{A97DD7EA-301F-4EF6-A40E-1D626CEDA27F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{0975f02c-d6b9-4b36-98ff-75f70a15653b}|Entidades.dll;{40f715df-bdd1-4e96-aa62-e36e939d0939}|Logica.dll;{916504f1-6fad-46dc-ac5e-d5e71093618b}|Persistencia.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_65302"
 		Debug.AspNetCompiler.PhysicalPath = "PronosticoClima\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_65302\"

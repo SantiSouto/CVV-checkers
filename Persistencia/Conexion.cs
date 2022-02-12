@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Persistencia
 {
-    class Conexion
+    internal class Conexion
     {
+        public static readonly string connectionString = "Server=DESKTOP-4E8OCHQ\\SQLEXPRESS;DATABASE=CLIMA;trusted_Connection=true;";
     }
 }

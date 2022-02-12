@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    class Pronostico
+   public class Pronostico
     {
         private int _codigointerno;
         private Ciudad _ciudad;
@@ -19,7 +19,7 @@ namespace Entidades
         private int _probabilidadlluvia;
         private int _probabilidadtormenta;
 
-
+        
 
         public int CodigoInterno
         {
@@ -63,13 +63,19 @@ namespace Entidades
         public int Tmaxima
         {
             get { return _tmaxima; }
-            set { _tmaxima = value; }
+            set {if ((value < -100) || (value > 100))
+                         throw new Exception("\n" + "ERROR EN LA TEMPERATURA");
+
+                _tmaxima = value; }
         }
 
         public int Tminima
         {
             get { return _tminima; }
-            set { _tminima = value; }
+            set {
+                if ((value < -100) || (value > 100))
+                    throw new Exception("\n" + "ERROR EN LA TEMPERATURA");
+                _tminima = value; }
         }
 
         public int VelocidadViento
@@ -89,19 +95,22 @@ namespace Entidades
 
         }
 
-        public DateTime Fechahora
+        public DateTime FechaHora
         {
             get { return _fechahora; }
-            set { _fechahora = value; }
+            set { _fechahora = value;}
         }
+    
 
         public string TipoDeCielo
         {
             get { return _tipodecielo; }
             set
             {
-                if (value.Trim() == string.Empty)
-                    throw new Exception("\n" + "----DEBE HABER UN TIPO DE CIELO----");
+                if (string.IsNullOrEmpty(value.Trim()))
+                { throw new Exception("\n" + "----DEBE HABER UN TIPO DE CIELO----"); }
+                else if(value.Trim().ToUpper() != "NUBOSO" && value.Trim().ToUpper() != "PARCIALMENTE NUBOSO" && vvalue.Trim().ToUpper() != "DESPEJADO")
+                { throw new Exception("\n" + "----eL TIPO DE CIELO NO ES VALIDO----"); }
 
                 _tipodecielo = value;
 
@@ -112,16 +121,24 @@ namespace Entidades
         public int ProbabilidadLluvia
         {
             get { return _probabilidadlluvia; }
-            set { _probabilidadlluvia = value; }
+            set {
+                 if ((value < 0 || value > 100))
+                    throw new Exception("\n" + "---ERROR----");
+                 _probabilidadlluvia = value; 
+            }
         }
 
         public int Probabilidadtormenta
         {
             get { return _probabilidadtormenta; }
-            set { _probabilidadtormenta = value; }
+            set {
+                 if ((value < 0 || value > 100))
+                    throw new Exception("\n" + "---ERROR----");
+                 _probabilidadtormenta = value;   
+            }
         }
 
-        public Pronostico(int codigointerno, Ciudad ciudad, Usuario usuario, int tmaxima, int tminima, DateTime fechahora, string tipodecielo, int problluvia, int probtormenta)
+        public Pronostico(int codigointerno, Ciudad ciudad, Usuario usuario, int tmaxima, int tminima, DateTime fechahora,int velocidaviento, string tipodecielo, int problluvia, int probtormenta)
 
         {
             CodigoInterno = codigointerno;
@@ -129,7 +146,8 @@ namespace Entidades
             Usuario = usuario;
             Tmaxima = tmaxima;
             Tminima = tminima;
-            Fechahora = fechahora;
+            FechaHora = fechahora;          
+            VelocidadViento = velocidaviento;
             TipoDeCielo = tipodecielo;
             ProbabilidadLluvia = problluvia;
             Probabilidadtormenta = probtormenta;
@@ -138,8 +156,8 @@ namespace Entidades
 
         public override string ToString()
         {
-            return "CODIGO INTERNO: " + CodigoInterno + "\n" + "CIUDAD: " + "\n" + Ciudad + "\n" + "USUARIO" + Usuario + "\n" + "TEMPERATURA MAXIMA: " + Tmaxima + "TEMPERATURA MINIMA: " + Tminima + "\n" + "FECHA y HORA: " + Fechahora.ToString() + "\n" + "\n" + "TIPO DE CIELO: " + TipoDeCielo + "\n" + "PROBABILIDAD DE LLUVIA: " + ProbabilidadLluvia + "PROBABILIDAD DE TORMENTA: " + Probabilidadtormenta;
+            return "CODIGO INTERNO: " + CodigoInterno + "\n" + "CIUDAD: " + "\n" + Ciudad + "\n" + "USUARIO" + Usuario + "\n" + "TEMPERATURA MAXIMA: " + Tmaxima + "°C" +"TEMPERATURA MINIMA: " + Tminima + "°C" + "FECHA Y HORA:" + FechaHora.ToString() + "Velocidad del Viento:" + VelocidadViento + "\n" + "\n" + "TIPO DE CIELO: " + TipoDeCielo + "\n" + "PROBABILIDAD DE LLUVIA: " + ProbabilidadLluvia + "%"+ "PROBABILIDAD DE TORMENTA: " + Probabilidadtormenta + "%";
         }
     }
 }
-}
+

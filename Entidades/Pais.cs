@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    class Pais
+   public class Pais
     {
         private string _codigopais;
         private string _nombre;
@@ -19,6 +19,8 @@ namespace Entidades
             {
                 if (value == null)
                     throw new Exception("\n" + "----DEBE INGRESAR UN CODIGO DE PAIS-----");
+                if (value.Trim().Length != 3)
+                    throw new Exception("\n" + "EL CODIGO DEBE SER DE 3 CARACTERES");
                 _codigopais = value;
             }
 
@@ -30,8 +32,11 @@ namespace Entidades
             get { return _nombre; }
             set
             {
-                if (value == null)
+                if (string.IsNullOrEmpty(value.Trim()))
                     throw new Exception("\n" + "----DEBE INGRESAR UN NOMBRE DE PAIS-----");
+                if (value.Length > 30)
+                    throw new Exception("\n" + "EL NOMBRE NO PUEDE TENER MAS DE 30 CARACTERES");
+
                 _nombre = value;
             }
 
@@ -53,4 +58,4 @@ namespace Entidades
 
     }
 }
-}
+

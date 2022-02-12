@@ -42,7 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogicaCiudad.cs" />
+    <Compile Include="LogPais.cs" />
+    <Compile Include="LogPronostico.cs" />
+    <Compile Include="LogUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{0975f02c-d6b9-4b36-98ff-75f70a15653b}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
+      <Project>{916504f1-6fad-46dc-ac5e-d5e71093618b}</Project>
+      <Name>Persistencia</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

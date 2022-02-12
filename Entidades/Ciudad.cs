@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    class Ciudad
+   public class Ciudad
     {
         private string _codigociudad;
         private Pais _codigopais;
@@ -19,6 +19,8 @@ namespace Entidades
             {
                 if (value == string.Empty)
                     throw new Exception("\n" + "----EL CODIGO NO ES VALIDO----");
+                if (value.Trim().Length != 3)
+                    throw new Exception("\n" + "EL CODIGO DEBE SER DE 3 CARACTERES");
                 _codigociudad = value;
             }
 
@@ -30,6 +32,7 @@ namespace Entidades
             {
                 if (value == null)
                     throw new Exception("-----LA NOTICIA DEBE TENER UN PAIS ASOCIADO----");
+        
                 _codigopais = value;
             }
 
@@ -40,8 +43,10 @@ namespace Entidades
             get { return _nombreciudad; }
             set
             {
-                if (value == string.Empty)
+                if (string.IsNullOrEmpty(value.Trim()))
                     throw new Exception("\n" + "----DEBE HABER UN NOBRE PARA LA CIUDAD----");
+                if (value.Length > 30)
+                    throw new Exception("\n" + "EL NOMBRE DE LA CIUDAD NO PUEDE TENER MAS DE 30 CARACTERES");
                 _nombreciudad = value;
             }
 
@@ -60,6 +65,7 @@ namespace Entidades
         {
             return "CODIGO CIUDAD:" + Codigociudad + "\t" + "CODIGOPAIS:" + Pais.ToString() + "\t" + "NOMBRECIUDAD" + NombreCiudad;
         }
+
     }
 }
 

@@ -15,7 +15,7 @@
 
         <center> 
    <h2>Pronósticos del día</h2>
-             <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal">
+             <asp:GridView ID="grdpronosticosdeldia" runat="server" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal">
             <FooterStyle BackColor="White" ForeColor="#333333" />
             <HeaderStyle BackColor="#35b58a" Font-Bold="True" ForeColor="#b6ff00" />
             <PagerStyle BackColor="#35b58a" ForeColor="White" HorizontalAlign="Center" />
