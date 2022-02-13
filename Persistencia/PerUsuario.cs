@@ -112,33 +112,36 @@ namespace Persistencia
             command.Parameters.Add(new SqlParameter("NOMBRE", usuario.Nombre));
             command.Parameters.Add(new SqlParameter("APELLIDO", usuario.Apellido));
             command.Parameters.Add(new SqlParameter("CONTRASENIA", usuario.Contrasenia));
-            SqlParameter r = new SqlParameter();
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-
 
             try
             {
                 connection.Open();
                 command.ExecuteNonQuery();
 
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
-
-
+                int retorno = (int)command.Parameters["@Retorno"].Value;
                 if (retorno == -1)
                     throw new Exception("YA EXISTE ESE USUARIO");
                 else if (retorno == -2)
                     throw new Exception("ERROR AL REGISTRAR EL USUARIO");
+                else
+                    throw new Exception("USUARIO REGISTRADO CON EXITO");
 
             }
             catch (Exception ex)
             {
-                throw new Exception ("Error: " + ex.Message);
+                throw new Exception ( ex.Message);
             }
+
             finally
             {
                 connection.Close();
+
             }
+
+
 
         }
 
@@ -149,37 +152,31 @@ namespace Persistencia
             SqlCommand command = new SqlCommand("sp_ModificarUsuario", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("NOMBRELOGUEO", usuario.NombreLogueo));
-            command.Parameters.Add(new SqlParameter("CONTRASENIA", usuario.Contrasenia));
             command.Parameters.Add(new SqlParameter("NOMBRE", usuario.Nombre));
             command.Parameters.Add(new SqlParameter("APELLIDO", usuario.Apellido));
+            command.Parameters.Add(new SqlParameter("CONTRASENIA", usuario.Contrasenia));
 
-            SqlParameter r = new SqlParameter();
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-
-
-
-
 
             try
             {
                 connection.Open();
                 command.ExecuteNonQuery();
 
-
-
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
-
+                int retorno = (int)command.Parameters["@Retorno"].Value;
                 if (retorno == -1)
                     throw new Exception("NO EXISTE ESE USUARIO");
                 else if (retorno == -2)
                     throw new Exception("ERROR AL MODIFICAR EL USUARIO");
-
+                else
+                    throw new Exception("USUARIO MODIFICADO CON EXITO");
 
             }
             catch (Exception ex)
             {
-                throw ex;
+               throw new Exception(ex.Message);
             }
             finally
             {
@@ -188,44 +185,39 @@ namespace Persistencia
 
         }
 
-        public void EliminarUsuario(Usuario usuario)
+        public void EliminarUsuario(string logueo)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
 
             SqlCommand command = new SqlCommand("sp_EliminarUsuario", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("NOMBRELOGUEO", usuario.NombreLogueo));
-            command.Parameters.Add(new SqlParameter("CONTRASENIA", usuario.Contrasenia));
-
-            SqlParameter r = new SqlParameter();
+            command.Parameters.Add(new SqlParameter("NOMBRELOGUEO", logueo));
+            
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-            command.ExecuteNonQuery();
-
-
-
+           
 
             try
             {
                 connection.Open();
                 command.ExecuteNonQuery();
 
-
-
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
-
+                int retorno = (int)command.Parameters["@Retorno"].Value;
                 if (retorno == -1)
                     throw new Exception("NO EXISTE EL USUARIO");
                 else if (retorno == -2)
                     throw new Exception("NO SE PUEDE ELIMINAR EL USUARIO, TIENE PRONOSTICOS ASOCIADOS");
                 else if (retorno == -3)
                     throw new Exception("ERROR");
+                else
+                    throw new Exception("USUARIO ELIMINADO CON EXITO");
 
 
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
             finally
             {

@@ -31,9 +31,9 @@ namespace Logica
 
         }
 
-        public void Eliminar(Usuario usuario)
+        public void Eliminar(string logueo)
         {
-            perusuario.EliminarUsuario(usuario);
+            perusuario.EliminarUsuario(logueo);
 
            
         }

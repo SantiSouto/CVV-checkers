@@ -10,9 +10,9 @@ namespace Entidades
     {
 
         private string _nombrelogueo;
-        private string _contrasenia;
         private string _nombre;
         private string _apellido;
+        private string _contrasenia;
 
         public string NombreLogueo
         {
@@ -73,17 +73,19 @@ namespace Entidades
 
         }
 
-        public Usuario(string nombrelogueo, string contrasenia, string nombre, string apellido)
+        public Usuario(string nombrelogueo,string nombre, string apellido, string contrasenia )
         {
             NombreLogueo = nombrelogueo;
-            Contrasenia = contrasenia;
+            
             Nombre = nombre;
             Apellido = apellido;
+            Contrasenia = contrasenia;
         }
 
         public override string ToString()
         {
-            return "NOMBRE DE LOGUEO:" + NombreLogueo + "\t" + "CONTRASENIA:" + Contrasenia + "\t" + "NOMBRE:" + Nombre + "\t" + "APELLIDO:" + Apellido;
+            return "NOMBRE DE LOGUEO:" + NombreLogueo + "\t" + "NOMBRE:" + Nombre + "\t" + "APELLIDO:" + Apellido +"\t" + "CONTRASENIA:" + Contrasenia ;
+
 
         }
     }

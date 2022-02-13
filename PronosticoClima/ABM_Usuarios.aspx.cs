@@ -6,20 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Entidades;
 using Logica;
-
-public partial class Usuarios_ABM : System.Web.UI.Page
+public partial class ABM_Usuarios : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
             this.LimpiarFormulario();
+
     }
-
-
-
-
-
-
 
     protected void btnAgregar_Click(object sender, EventArgs e)
     {
@@ -29,34 +23,83 @@ public partial class Usuarios_ABM : System.Web.UI.Page
             LogUsuario logusuario = new LogUsuario();
             logusuario.RegistrarUsuario(usuario);
             LimpiarFormulario();
-            lblMensaje.Text = " Usuario agregado con éxito";
-        } 
-        catch (Exception ex) 
+
+        }
+        catch (Exception ex)
         {
             LimpiarFormulario();
             lblMensaje.Text = ex.Message;
 
-        } 
-    
+        }
+        finally
+        {
+            txtNombreUsuario.Enabled = true;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            txtClave.Enabled = false;
+            txtNombreUsuario.Focus();
+        }
     }
 
     protected void btnModificar_Click(object sender, EventArgs e)
     {
+        try
+        {
+            lblMensaje.Text = string.Empty;
+            Usuario usuario = new Usuario(txtNombreUsuario.Text.Trim(), txtNombre.Text.Trim(), txtApellido.Text.Trim(), txtClave.Text.Trim());
+            LogUsuario logusuario = new LogUsuario();
+            logusuario.Editar(usuario);
 
+        }
+        catch (Exception ex)
+        {
+            LimpiarFormulario();
+            lblMensaje.Text = ex.Message;
+
+        }
+        finally
+        {
+            txtNombreUsuario.Enabled = true;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            txtClave.Enabled = false;
+            txtNombre.Focus();
+        }
     }
 
     protected void btnEliminar_Click(object sender, EventArgs e)
     {
+        try
+        {
+            lblMensaje.Text = string.Empty;
+            string logueo = txtNombreUsuario.Text.Trim();
+            LogUsuario logusuario = new LogUsuario();
+            logusuario.Eliminar(logueo);
 
+        }
+        catch (Exception ex)
+        {
+            LimpiarFormulario();
+            lblMensaje.Text = ex.Message;
+        }
+        finally
+        {
+            txtNombreUsuario.Enabled = true;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            txtClave.Enabled = false;
+            txtNombreUsuario.Focus();
+
+        }
     }
 
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        try 
+        try
         {
-
+            LimpiarFormulario();
             lblMensaje.Text = string.Empty;
-            string logueo= txtNombreUsuario.Text.Trim();
+            string logueo = txtNombreUsuario.Text.Trim();
             LogUsuario logusuario = new LogUsuario();
             Usuario usuario = logusuario.Buscar(logueo);
             txtNombre.Text = usuario.Nombre;
@@ -64,33 +107,30 @@ public partial class Usuarios_ABM : System.Web.UI.Page
             txtClave.Text = usuario.Contrasenia;
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
-          
+
 
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             lblMensaje.Text = ex.Message;
             btnAgregar.Enabled = true;
-            
 
 
-        } 
-        finally 
-        
+
+        }
+        finally
+
         {
-         
+
             txtNombre.Enabled = true;
             txtApellido.Enabled = true;
             txtClave.Enabled = true;
             txtNombreUsuario.Enabled = false;
             txtNombre.Focus();
         }
-
     }
 
-
-
-    protected void LimpiarFormulario() 
+    protected void LimpiarFormulario()
     {
         btnAgregar.Enabled = false;
         btnModificar.Enabled = false;
@@ -104,4 +144,6 @@ public partial class Usuarios_ABM : System.Web.UI.Page
         txtNombreUsuario.Focus();
 
     }
+
+
 }

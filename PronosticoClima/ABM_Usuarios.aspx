@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Usuarios_ABM.aspx.cs" Inherits="Usuarios_ABM" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ABM_Usuarios.aspx.cs" Inherits="ABM_Usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -55,7 +55,12 @@
                                     <asp:Button class="btn btn-outline-primary" ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click"  />
                                     <asp:Button class="btn btn-outline-primary" ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click"  />
                                     <asp:Button class="btn btn-outline-primary" ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
+                                     <br />
+                                     <br />
                                     <asp:Button class="btn btn-outline-primary" ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click"  />
+                          
+                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                     <asp:ImageButton ID="btnLimpiar" runat="server" ImageUrl="~/iconos/icons8-broom-64.png" />
                           
                                      </div>
                             </center>
@@ -76,6 +81,5 @@
             </div>
         </div>
     </div>
-
 </asp:Content>
 
