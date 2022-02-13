@@ -58,10 +58,9 @@ namespace Persistencia
 
         public Usuario Buscar(string nombrelogueo)
         {
+
             Usuario usuario = null;
-
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-
             SqlCommand command = new SqlCommand("sp_BuscarUsuario", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("NOMBRELOGUEO ", nombrelogueo));
@@ -70,12 +69,11 @@ namespace Persistencia
             try
             {
                 connection.Open();
-
                 SqlDataReader reader = command.ExecuteReader();
                
 
                 if (reader.Read())
-                    usuario = new Usuario(
+                usuario = new Usuario(
                  reader["NOMBRELOGUEO"].ToString(), reader["NOMBRE"].ToString(), reader["APELLIDO"].ToString(), reader["CONTRASENIA"].ToString());
 
 
@@ -86,13 +84,15 @@ namespace Persistencia
             {
                 throw new ApplicationException("ERROR:" + ex.Message);
             }
+            
             finally
             {
                 connection.Close();
         
             }
-            if (usuario == null)
-                throw new Exception("El usuario de logueo que busca no existe.");
+                     if (usuario == null)
+                    throw new Exception("El usuario de logueo que busca no existe.");
+            
             return usuario;
         }
 

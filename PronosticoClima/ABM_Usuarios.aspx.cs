@@ -97,7 +97,7 @@ public partial class ABM_Usuarios : System.Web.UI.Page
     {
         try
         {
-            LimpiarFormulario();
+            
             lblMensaje.Text = string.Empty;
             string logueo = txtNombreUsuario.Text.Trim();
             LogUsuario logusuario = new LogUsuario();
@@ -146,4 +146,9 @@ public partial class ABM_Usuarios : System.Web.UI.Page
     }
 
 
+
+    protected void btnLimpiar_Click(object sender, ImageClickEventArgs e)
+    {
+        LimpiarFormulario();
+    }
 }
