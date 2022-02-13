@@ -1,10 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ABM_Usuarios.aspx.cs" Inherits="ABM_Usuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Usuarios_ABM.aspx.cs" Inherits="Usuarios_ABM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
- 
 </asp:Content>
-
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container">
         <div class="row">

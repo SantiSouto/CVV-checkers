@@ -24,7 +24,8 @@ namespace Logica
 
 
             perusuario.EditarUsuario(usuario);
-
+            
+                
            
 
 

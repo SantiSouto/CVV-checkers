@@ -35,7 +35,7 @@ namespace Persistencia
 
                 if (reader.Read())
                     usuario = new Usuario(
-                 reader["NOMBRELOGUEO"].ToString(), reader["CONTRASENIA"].ToString(), reader["NOMBRE"].ToString(), reader["APELLIDO"].ToString());
+                 reader["NOMBRELOGUEO"].ToString(),  reader["NOMBRE"].ToString(), reader["APELLIDO"].ToString(), reader["CONTRASENIA"].ToString());
 
 
                 reader.Close();
@@ -62,22 +62,21 @@ namespace Persistencia
 
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
 
-            SqlCommand command = new SqlCommand("sp_BUSCARUSUARIO", connection);
+            SqlCommand command = new SqlCommand("sp_BuscarUsuario", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("NOMBRELOGUEO ", nombrelogueo));
 
 
-
-
             try
             {
-                SqlDataReader reader = command.ExecuteReader();
                 connection.Open();
 
+                SqlDataReader reader = command.ExecuteReader();
+               
 
                 if (reader.Read())
                     usuario = new Usuario(
-                 reader["NOMBRELOGUEO"].ToString(), reader["CONTRASENIA"].ToString(), reader["NOMBRE"].ToString(), reader["APELLIDO"].ToString());
+                 reader["NOMBRELOGUEO"].ToString(), reader["NOMBRE"].ToString(), reader["APELLIDO"].ToString(), reader["CONTRASENIA"].ToString());
 
 
                 reader.Close();
@@ -90,8 +89,10 @@ namespace Persistencia
             finally
             {
                 connection.Close();
+        
             }
-
+            if (usuario == null)
+                throw new Exception("El usuario de logueo que busca no existe.");
             return usuario;
         }
 
@@ -108,10 +109,9 @@ namespace Persistencia
             SqlCommand command = new SqlCommand("sp_IngresarUsuario", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("NOMBRELOGUEO", usuario.NombreLogueo));
-            command.Parameters.Add(new SqlParameter("CONTRASENIA", usuario.Contrasenia));
             command.Parameters.Add(new SqlParameter("NOMBRE", usuario.Nombre));
             command.Parameters.Add(new SqlParameter("APELLIDO", usuario.Apellido));
-
+            command.Parameters.Add(new SqlParameter("CONTRASENIA", usuario.Contrasenia));
             SqlParameter r = new SqlParameter();
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
@@ -133,7 +133,7 @@ namespace Persistencia
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception ("Error: " + ex.Message);
             }
             finally
             {

@@ -4,3 +4,9 @@ C:\Users\Santiago\Desktop\proyecto\Entidades\obj\Debug\Entidades.csproj.Assembly
 C:\Users\Santiago\Desktop\proyecto\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\Santiago\Desktop\proyecto\Entidades\obj\Debug\Entidades.dll
 C:\Users\Santiago\Desktop\proyecto\Entidades\obj\Debug\Entidades.pdb
+C:\Users\silve\Source\Repos\proyectofinal1\Entidades\bin\Debug\Entidades.dll
+C:\Users\silve\Source\Repos\proyectofinal1\Entidades\bin\Debug\Entidades.pdb
+C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.dll
+C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.pdb
