@@ -39,7 +39,9 @@
                                 <input type="password" class="form-control" id="inputClave">
                             </div>
                             <center>
-                                <button type="submit" class="btn btn-secondary btn-lg">Entrar</button>
+                          
+                                <asp:Button ID="btnLogin" CssClass="btn-success btn-block btn-lg"  runat="server" Text="Entrar" OnClick="btnLogin_Click" />
+                          
                             </center>
 
                             <div>

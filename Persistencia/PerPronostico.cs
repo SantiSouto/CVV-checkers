@@ -12,7 +12,9 @@ namespace Persistencia
    public class PerPronostico
     {
 
-
+        PerCiudad perciudad = new PerCiudad();
+        PerUsuario perusuario = new PerUsuario();
+        PerPais perpais = new PerPais();
         public List<Pronostico> PronosticoDiario()
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
@@ -22,9 +24,7 @@ namespace Persistencia
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
 
-            PerCiudad perciudad = new PerCiudad();
-            PerUsuario perusuario = new PerUsuario();
-
+          
 
             SqlDataReader reader = command.ExecuteReader();
             List<Pronostico> pronosticos = new List<Pronostico>();
@@ -37,10 +37,10 @@ namespace Persistencia
 
                 Ciudad ciudadbuscada = perciudad.Buscar(reader["CODIGOCIUDAD"].ToString());
                 Usuario usuariobuscado = perusuario.Buscar(reader["NOMBRELOGUEO"].ToString());
+                Pais paisbuscado = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
 
 
-
-                Pronostico pronostico = new Pronostico(Convert.ToInt32(reader["CODIGOINTERNO"].ToString()), ciudadbuscada, usuariobuscado,
+                Pronostico pronostico = new Pronostico(Convert.ToInt32(reader["CODIGOINTERNO"].ToString()), ciudadbuscada, paisbuscado, usuariobuscado, 
                 Convert.ToInt32(reader["TMAXIMA"].ToString()), Convert.ToInt32(reader["TMINIMA"].ToString()), Convert.ToDateTime(reader["FECHAHORA"].ToString()), Convert.ToInt32(reader["VELOCIDADVIENTO"].ToString()), reader["TIPODECIELO"].ToString(), Convert.ToInt32(reader["PROBLLUVIA"].ToString()), Convert.ToInt32(reader["PROBTORMENTA"].ToString()));
 
 
@@ -55,7 +55,7 @@ namespace Persistencia
              return pronosticos;
         }
 
-        public int RegistrarPronostico(Pronostico pronostico,Usuario usuario,Ciudad ciudad)
+        public int RegistrarPronostico(Pronostico pronostico,Usuario usuario,Ciudad ciudad, Pais pais)
 
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
@@ -64,6 +64,7 @@ namespace Persistencia
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("NOMBRELOGUEO", usuario.NombreLogueo));
             command.Parameters.Add(new SqlParameter("CIUDAD", ciudad.Codigociudad));
+            command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
             command.Parameters.Add(new SqlParameter("TMAXIMA", pronostico.Tmaxima));
             command.Parameters.Add(new SqlParameter("Tminima", pronostico.Tminima));
             command.Parameters.Add(new SqlParameter("VELOCIDADVIENTO", pronostico.VelocidadViento));
@@ -94,8 +95,7 @@ namespace Persistencia
             SqlCommand command = new SqlCommand("sp_PRONOSTICOPORCIUDAD", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            PerCiudad perciudad = new PerCiudad();
-            PerUsuario perusuario = new PerUsuario();
+  
 
             SqlDataReader reader = command.ExecuteReader();
             List<Pronostico> pronosticos = new List<Pronostico>();
@@ -106,8 +106,9 @@ namespace Persistencia
             {
                  Ciudad ciudadbuscada = perciudad.Buscar(reader["CODIGOCIUDAD"].ToString());
                 Usuario usuariobuscado = perusuario.Buscar(reader["NOMBRELOGUEO"].ToString());
+                Pais paisbuscado = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
 
-                Pronostico pronostico = new Pronostico(Convert.ToInt32(reader["CODIGOINTERNO"].ToString()), ciudadbuscada, usuariobuscado,
+                Pronostico pronostico = new Pronostico(Convert.ToInt32(reader["CODIGOINTERNO"].ToString()), ciudadbuscada, paisbuscado, usuariobuscado,
                 Convert.ToInt32(reader["TMAXIMA"].ToString()), Convert.ToInt32(reader["TMINIMA"].ToString()), Convert.ToDateTime(reader["FECHAHORA"].ToString()), Convert.ToInt32(reader["VELOCIDADVIENTO"].ToString()), reader["TIPODECIELO"].ToString(), Convert.ToInt32(reader["PROBLLUVIA"].ToString()), Convert.ToInt32(reader["PROBTORMENTA"].ToString()));
 
 
@@ -131,8 +132,7 @@ namespace Persistencia
             SqlCommand command = new SqlCommand("sp_PRONOSTICOPORFECHA", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            PerCiudad perciudad = new PerCiudad();
-            PerUsuario perusuario = new PerUsuario();
+          
 
             SqlDataReader reader = command.ExecuteReader();
             List<Pronostico> pronosticos = new List<Pronostico>();
@@ -143,8 +143,9 @@ namespace Persistencia
             {
                 Ciudad ciudadbuscada = perciudad.Buscar(reader["CODIGOCIUDAD"].ToString());
                 Usuario usuariobuscado = perusuario.Buscar(reader["NOMBRELOGUEO"].ToString());
+                Pais paisbuscado = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
 
-                Pronostico pronostico = new Pronostico(Convert.ToInt32(reader["CODIGOINTERNO"].ToString()), ciudadbuscada, usuariobuscado,
+                Pronostico pronostico = new Pronostico(Convert.ToInt32(reader["CODIGOINTERNO"].ToString()), ciudadbuscada, paisbuscado, usuariobuscado,
                 Convert.ToInt32(reader["TMAXIMA"].ToString()), Convert.ToInt32(reader["TMINIMA"].ToString()), Convert.ToDateTime(reader["FECHAHORA"].ToString()), Convert.ToInt32(reader["VELOCIDADVIENTO"].ToString()), reader["TIPODECIELO"].ToString(), Convert.ToInt32(reader["PROBLLUVIA"].ToString()), Convert.ToInt32(reader["PROBTORMENTA"].ToString()));
 
 

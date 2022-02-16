@@ -15,56 +15,96 @@ namespace Persistencia
         public Pais BuscarPais(string codigopais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+
+
             SqlCommand command = new SqlCommand("sp_BUSCARPAIS", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", codigopais));
-
-
-            SqlDataReader reader = command.ExecuteReader();
-
-
-
             Pais pais = null;
 
-            while (reader.Read())
+
+            try
             {
-                pais = new Pais(reader["CODIGOPAIS"].ToString(), reader["NOMBRE"].ToString());
+                connection.Open();
+
+
+
+                SqlDataReader reader = command.ExecuteReader();
+
+
+
+               
+                while (reader.Read())
+                {
+                    pais = new Pais(reader["CODIGOPAIS"].ToString(), reader["NOMBRE"].ToString());
+
+                }
+
+                reader.Close();
+
             }
 
-
-            reader.Close();
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
+            finally { 
             connection.Close();
+              
 
+            }
             return pais;
 
         }
 
 
-        public int RegistrarPais(Pais pais)
+        public void RegistrarPais(Pais pais)
         {
 
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+           
             SqlCommand command = new SqlCommand("sp_AgregarPais", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
             command.Parameters.Add(new SqlParameter("NOMBRE", pais.Nombre));
 
             SqlParameter r = new SqlParameter();
-            r.Direction = System.Data.ParameterDirection.ReturnValue;
+           
             command.Parameters.Add(r);
-            command.ExecuteNonQuery();
+            
 
-            connection.Close();
 
-            return Convert.ToInt32(r.Value);
+
+            try 
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+
+                if (retorno == -1)
+                    throw new Exception("YA EXISTE ESE PAIS EN LA BASE DE DATOS");
+                else if (retorno == -2)
+                    throw new Exception("ERROR AL MODIFICAR");
+            } 
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            } 
+            finally
+            
+            
+            {
+
+                connection.Close();
+            }
+
+
         }
 
-        public int EditarPais(Pais pais)
+        public void EditarPais(Pais pais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+            
             SqlCommand command = new SqlCommand("sp_ModificarPais", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
@@ -74,11 +114,39 @@ namespace Persistencia
             SqlParameter r = new SqlParameter();
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-            command.ExecuteNonQuery();
+   
 
-            connection.Close();
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
 
-            return Convert.ToInt32(r.Value);
+                if (retorno == -1)
+                    throw new Exception("NO EXISTE EL PAIS");
+                else if (retorno == -2)
+                    throw new Exception("NO SE PUEDE MODIFICAR, TIENE PRONOSTICOS ASOCIADOS");
+                else if (retorno == -3)
+                    throw new Exception("ERROR AL MODIFICAR");
+            }
+            catch (Exception ex)
+            
+            {
+                throw new Exception(ex.Message);
+            } 
+            
+            
+            
+            
+            
+            finally
+            {
+
+                connection.Close();
+            }
+
+
+
 
 
         }
@@ -88,46 +156,86 @@ namespace Persistencia
         public List<Pais> TodosLosPaises()
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+       
             SqlCommand command = new SqlCommand("sp_LISTARTODOSLOSPAISES", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
-
-            SqlDataReader reader = command.ExecuteReader();
             List<Pais> paises = new List<Pais>();
-            while (reader.Read())
+
+
+
+            try
             {
-                Pais pais = new Pais(
-                     reader["CODIGOPAIS"].ToString(),reader["NOMBRE"].ToString());
-                paises.Add(pais);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+           
+                while (reader.Read())
+                {
+                    Pais pais = new Pais(
+                         reader["CODIGOPAIS"].ToString(), reader["NOMBRE"].ToString());
+                    paises.Add(pais);
+
+                }
+                reader.Close();
+                return paises;
+
 
             }
-            reader.Close();
-            connection.Close();
-            return paises;
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
+            finally 
+            {
+                connection.Close();
+            }
+
+
+
+            
+
 
         }
 
-        public int EliminarPais(Pais pais)
+        public void EliminarPais(Pais pais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+            
             SqlCommand command = new SqlCommand("sp_EliminarPais", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
             command.Parameters.Add(new SqlParameter("NOMBRE", pais.Nombre));
 
             SqlParameter r = new SqlParameter();
-            r.Direction = System.Data.ParameterDirection.ReturnValue;
+            
             command.Parameters.Add(r);
-            command.ExecuteNonQuery();
+           
 
-            connection.Close();
 
-            return Convert.ToInt32(r.Value);
+            try
+            { 
+                connection.Open(); 
+                command.ExecuteNonQuery();
 
+
+                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+
+                if (retorno == -1)
+                    throw new Exception("NO EXISTE EL PAIS");
+                else if (retorno == -2)
+                    throw new Exception("NO SE PUEDE ELIMINAR EL PAIS, TIENE CIUDADES CON PRONOSTICOS ASOCIADOS");
+                else if (retorno == -3)
+                    throw new Exception("ERROR");
+
+            } catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            } 
+            finally
+
+            {
+                connection.Close();
+            }
 
         }
-
-
     }
 }

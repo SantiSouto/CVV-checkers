@@ -18,7 +18,7 @@ namespace Entidades
         private string _tipodecielo;
         private int _probabilidadlluvia;
         private int _probabilidadtormenta;
-
+        private  Pais _codigopais;
         
 
         public int CodigoInterno
@@ -40,6 +40,17 @@ namespace Entidades
                     throw new Exception("\n" + "----DEBE HABER UNA CIUDAD----");
                 _ciudad = value;
 
+            }
+        }
+
+
+        public  Pais CodigoPais
+        {
+            get { return _codigopais; }
+
+            set 
+            {
+                _codigopais = value;
             }
         }
 
@@ -138,11 +149,12 @@ namespace Entidades
             }
         }
 
-        public Pronostico(int codigointerno, Ciudad ciudad, Usuario usuario, int tmaxima, int tminima, DateTime fechahora,int velocidaviento, string tipodecielo, int problluvia, int probtormenta)
+        public Pronostico(int codigointerno, Ciudad ciudad, Pais codigopais, Usuario usuario, int tmaxima, int tminima, DateTime fechahora,int velocidaviento, string tipodecielo, int problluvia, int probtormenta)
 
         {
             CodigoInterno = codigointerno;
             Ciudad = ciudad;
+            CodigoPais = codigopais;
             Usuario = usuario;
             Tmaxima = tmaxima;
             Tminima = tminima;
@@ -156,7 +168,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return "CODIGO INTERNO: " + CodigoInterno + "\n" + "CIUDAD: " + "\n" + Ciudad + "\n" + "USUARIO" + Usuario + "\n" + "TEMPERATURA MAXIMA: " + Tmaxima + "°C" +"TEMPERATURA MINIMA: " + Tminima + "°C" + "FECHA Y HORA:" + FechaHora.ToString() + "Velocidad del Viento:" + VelocidadViento + "\n" + "\n" + "TIPO DE CIELO: " + TipoDeCielo + "\n" + "PROBABILIDAD DE LLUVIA: " + ProbabilidadLluvia + "%"+ "PROBABILIDAD DE TORMENTA: " + Probabilidadtormenta + "%";
+            return "CODIGO INTERNO: " + CodigoInterno + "\n" + "CIUDAD: " + "\n" + Ciudad+ "\n" + "PAIS:  \n" + CodigoPais +"\n" + "USUARIO" + Usuario + "\n" + "TEMPERATURA MAXIMA: " + Tmaxima + "°C" +"TEMPERATURA MINIMA: " + Tminima + "°C" + "FECHA Y HORA:" + FechaHora.ToString() + "Velocidad del Viento:" + VelocidadViento + "\n" + "\n" + "TIPO DE CIELO: " + TipoDeCielo + "\n" + "PROBABILIDAD DE LLUVIA: " + ProbabilidadLluvia + "%"+ "PROBABILIDAD DE TORMENTA: " + Probabilidadtormenta + "%";
         }
     }
 }

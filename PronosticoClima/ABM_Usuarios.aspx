@@ -67,7 +67,9 @@
 
                             <div>
                                 <hr />
+                                <center> 
                                 <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+                                    </center>
                                 <p> </p>
                                 <p> </p>
                             </div>

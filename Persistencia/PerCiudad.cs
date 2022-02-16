@@ -12,39 +12,58 @@ namespace Persistencia
 {
     public class PerCiudad
     {
+
+
+        PerPais perpais = new PerPais();
+
+
         public Ciudad Buscar(string codigociudad)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
             SqlCommand command = new SqlCommand("sp_BUSCARCIUDAD", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOCIUDAD ", codigociudad));
-
-            SqlDataReader reader = command.ExecuteReader();
-
             Ciudad ciudad = null;
 
-            PerPais perpais = new PerPais();
 
-            while (reader.Read())
+
+
+
+            try 
             {
-                Pais pais = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
-                ciudad = new Ciudad(
-                reader["CODIGOCIUDAD"].ToString(), pais, reader["NOMBRE"].ToString());
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+            
+
+                    Pais pais = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
+                    ciudad = new Ciudad(
+                    reader["CODIGOCIUDAD"].ToString(), pais, reader["NOMBRE"].ToString());
+
+                }
+                reader.Close();
+                return ciudad;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            } 
+            finally 
+            {
+                connection.Close();
             }
 
-            reader.Close();
-            connection.Close();
-
-            return ciudad;
+ 
         }
 
 
-        public int RegistrarCiudad(Ciudad ciudad, Pais pais)
+        public void RegistrarCiudad(Ciudad ciudad, Pais pais)
         {
+           
 
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+           
             SqlCommand command = new SqlCommand("sp_IngresarCiudad", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOCIUDAD", ciudad.Codigociudad));
@@ -54,18 +73,41 @@ namespace Persistencia
             SqlParameter r = new SqlParameter();
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-            command.ExecuteNonQuery();
 
-            connection.Close();
 
-            return Convert.ToInt32(r.Value);
+            try 
+            { 
+                connection.Open();
+                command.ExecuteNonQuery();
+                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+
+
+
+                if (retorno == -1)
+                    throw new Exception("NO EXISTE EL PAIS EN LA BASE DE DATOS");
+                else if (retorno == -2)
+                    throw new Exception("YA ESTA REGISTRADA ESA CIUDAD");
+                else if (retorno == -3)
+                    throw new Exception("ERROR");
+
+
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+
+            } 
+            finally 
+            {
+                connection.Close();
+            }
+
         }
 
 
-        public int EditarCiudad(Ciudad ciudad,Pais pais)
+        public void EditarCiudad(Ciudad ciudad,Pais pais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
             SqlCommand command = new SqlCommand("sp_ModificarCiudad", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOCIUDAD", ciudad.Codigociudad)); 
@@ -76,19 +118,42 @@ namespace Persistencia
             SqlParameter r = new SqlParameter();
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-            command.ExecuteNonQuery();
+         
 
-            connection.Close();
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
 
-            return Convert.ToInt32(r.Value);
+
+
+                if (retorno == -1)
+                    throw new Exception("NO EXISTE LA CIUDAD");
+                else if (retorno == -2)
+                    throw new Exception("ERROR");
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        
 
 
         }
 
-        public int EliminarCiudad(Ciudad ciudad,Pais pais)
+        public void EliminarCiudad(Ciudad ciudad,Pais pais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+            
             SqlCommand command = new SqlCommand("sp_EliminarCiudad", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOCIUDAD", ciudad.Codigociudad));
@@ -99,45 +164,73 @@ namespace Persistencia
             command.Parameters.Add(r);
             command.ExecuteNonQuery();
 
-            connection.Close();
+     
 
-            return Convert.ToInt32(r.Value);
 
+            try 
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+
+
+
+                if (retorno == -1)
+                    throw new Exception("NO EXISTE LA CIUDAD");
+                else if (retorno == -2)
+                    throw new Exception("ERROR");
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                connection.Close();
+            }
 
         }
 
         public List<Ciudad> TodosLasCiudades()
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            connection.Open();
+          
             SqlCommand command = new SqlCommand("sp_ListarCiudad", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
-
-
-            PerPais perpais = new PerPais();
-
-            SqlDataReader reader = command.ExecuteReader();
-
             List<Ciudad> ciudades = new List<Ciudad>();
 
-       
-            while (reader.Read())
+            try
             {
-                Pais paisbuscado = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Pais paisbuscado = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
 
-               Ciudad ciudad = new Ciudad(  reader["CODIGOCIUDAD"].ToString(),paisbuscado, reader["NOMBRE"].ToString());
+                    Ciudad ciudad = new Ciudad(reader["CODIGOCIUDAD"].ToString(), paisbuscado, reader["NOMBRE"].ToString());
 
 
-                ciudades.Add(ciudad);
+                    ciudades.Add(ciudad);
+
+                }
+
+                reader.Close();
+                return ciudades;
 
             }
-            reader.Close();
-            connection.Close();
-            return ciudades;
+
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
 
         }
-
-
 
     }
 }

@@ -12,25 +12,15 @@ namespace Logica
     {
         PerPais perpais = new PerPais();
 
-        public bool RegistrarPais(Pais pais)
+        public void RegistrarPais(Pais pais)
         {
-            int retorno = perpais.RegistrarPais(pais);
-            if (retorno == -1)
-                throw new Exception("YA EXISTE ESE PAIS EN LA BASE DE DATOS");
-            else if (retorno == -2)
-                throw new Exception("ERROR AL MODIFICAR");
-            return true;
+            perpais.RegistrarPais(pais);
+       
         }
-        public bool EditarPais(Pais pais)
+        public void EditarPais(Pais pais)
         {
-            int retorno = perpais.EditarPais(pais);
-            if (retorno == -1)
-                throw new Exception("NO EXISTE EL PAIS");
-            else if (retorno == -2)
-                throw new Exception("NO SE PUEDE MODIFICAR, TIENE PRONOSTICOS ASOCIADOS");
-            else if (retorno == -3)
-                throw new Exception("ERROR AL MODIFICAR");
-            return true;
+            perpais.EditarPais(pais);
+         
         }
 
         public List<Pais> TodosLosPaises()
@@ -42,14 +32,7 @@ namespace Logica
 
         public void Eliminar(Pais pais)
         {
-            int r = perpais.EliminarPais(pais);
-
-            if (r == -1)
-                throw new Exception("NO EXISTE EL PAIS");
-            else if (r == -2)
-                throw new Exception("NO SE PUEDE ELIMINAR EL PAIS, TIENE CIUDADES ASOCIADAS");
-            else if (r == -3)
-                throw new Exception("ERROR");
+             perpais.EliminarPais(pais);
 
         }
 
