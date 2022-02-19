@@ -141,6 +141,7 @@ public partial class ABM_Usuarios : System.Web.UI.Page
         txtNombre.Text = string.Empty;
         txtApellido.Text = string.Empty;
         txtClave.Text = string.Empty;
+        lblMensaje.Text = string.Empty;
         txtNombreUsuario.Focus();
 
     }

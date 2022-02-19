@@ -15,7 +15,7 @@ public partial class _Default : System.Web.UI.Page
         LogPronostico logPronostico = new LogPronostico();
         grdpronosticosdeldia.DataSource = logPronostico.PronosticoDiario();
         grdpronosticosdeldia.DataBind();
-
+      
     }
 
 

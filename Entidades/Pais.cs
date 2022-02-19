@@ -53,7 +53,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return "CODIGO PAIS:" + CodigoPais + "\t" + "NOMBRE" + Nombre;
+            return "CODIGO PAIS:" + CodigoPais.ToString() + "\t" + "NOMBRE" + Nombre.ToString();
         }
 
     }

@@ -46,17 +46,17 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="Default.aspx"  >
-                                    <img src="Images/WeatherForecast.png" alt="" width="40" height="34" class="d-inline-block align-text-top">
+                                    <img src="iconos/WeatherForecast.png" alt="" width="40" height="34" class="d-inline-block align-text-top">
                                     <h2>Home</h2>
                                     
 
                                 </a>
                             </li>
                                 <li class="nav-item">
-                                <a class="nav-link" >Países</a>
+                                <a class="nav-link" href="ABM_Pais.aspx" >Países</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" >Ciudades</a>
+                                <a class="nav-link" href="ABM_Ciudad.aspx" >Ciudades</a>
                             </li>
                                 <li class="nav-item">
                                 <a class="nav-link" href="ABM_Usuarios.aspx" >Usuarios</a>

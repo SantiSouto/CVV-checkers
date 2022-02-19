@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 using Entidades;
 using Persistencia;
 
+
+
+
 namespace Logica
 {
-    class LogicaCiudad
+   public  class LogicaCiudad
     {
+
         private PerCiudad perciudad = new PerCiudad();
+
         public void RegistrarCiudad(Ciudad ciudad, Pais pais)
         {
-      perciudad.RegistrarCiudad(ciudad,pais);
-        
+
+            perciudad.RegistrarCiudad(ciudad, pais);
+
         }
 
-        public void EditarCiudad(Ciudad ciudad,Pais pais)
+        public void EditarCiudad(Ciudad ciudad, Pais pais)
         {
-            perciudad.EditarCiudad(ciudad,pais);
+            perciudad.EditarCiudad(ciudad, pais);
   
         }
 
@@ -36,6 +42,11 @@ namespace Logica
         }
 
 
+        public Ciudad Buscar(string codciudad) 
+        {
+            Ciudad ciudad= perciudad.Buscar(codciudad);
+            return ciudad;
+        }
 
     }
 }

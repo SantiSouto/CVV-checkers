@@ -9,8 +9,8 @@ namespace Entidades
    public class Ciudad
     {
         private string _codigociudad;
-        private Pais _codigopais;
         private string _nombreciudad;
+        private Pais _codigopais;
 
         public string Codigociudad
         {
@@ -25,18 +25,7 @@ namespace Entidades
             }
 
         }
-        public Pais Pais
-        {
-            get { return _codigopais; }
-            set
-            {
-                if (value == null)
-                    throw new Exception("-----LA NOTICIA DEBE TENER UN PAIS ASOCIADO----");
-        
-                _codigopais = value;
-            }
-
-        }
+  
 
         public string NombreCiudad
         {
@@ -51,19 +40,31 @@ namespace Entidades
             }
 
         }
+        public Pais Pais
+        {
+            get { return _codigopais; }
+            set
+            {
+                if (value == null)
+                    throw new Exception("-----LA NOTICIA DEBE TENER UN PAIS ASOCIADO----");
+
+                _codigopais = value;
+            }
+
+        }
 
 
-
-        public Ciudad(string codigociudad, Pais codigopais, string nombreciudad)
+        public Ciudad(string codigociudad, string nombreciudad, Pais codigopais)
         {
 
             Codigociudad = codigociudad;
             Pais = codigopais;
             NombreCiudad = nombreciudad;
+           
         }
         public override string ToString()
         {
-            return "CODIGO CIUDAD:" + Codigociudad + "\t" + "CODIGOPAIS:" + Pais.ToString() + "\t" + "NOMBRECIUDAD" + NombreCiudad;
+            return "CODIGO CIUDAD:" + Codigociudad + "\t" + "NOMBRECIUDAD" + NombreCiudad + "\t" + "CODIGOPAIS:" + Pais.ToString();
         }
 
     }

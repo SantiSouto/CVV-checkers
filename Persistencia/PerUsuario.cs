@@ -91,7 +91,7 @@ namespace Persistencia
         
             }
                      if (usuario == null)
-                    throw new Exception("El usuario de logueo que busca no existe.");
+                    throw new Exception("El usuario de logueo que busca no existe en la base de datos.");
             
             return usuario;
         }
@@ -140,8 +140,6 @@ namespace Persistencia
                 connection.Close();
 
             }
-
-
 
         }
 

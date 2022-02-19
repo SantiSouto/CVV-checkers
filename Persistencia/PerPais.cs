@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 using Entidades;
 
 
@@ -14,45 +15,36 @@ namespace Persistencia
     {
         public Pais BuscarPais(string codigopais)
         {
+            Pais pais = null;
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-
-
             SqlCommand command = new SqlCommand("sp_BUSCARPAIS", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", codigopais));
-            Pais pais = null;
-
 
             try
             {
                 connection.Open();
-
-
-
                 SqlDataReader reader = command.ExecuteReader();
 
-
-
-               
-                while (reader.Read())
-                {
+                if (reader.Read())
                     pais = new Pais(reader["CODIGOPAIS"].ToString(), reader["NOMBRE"].ToString());
-
-                }
-
                 reader.Close();
 
             }
 
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            finally { 
-            connection.Close();
-              
+            finally
+
+            {
+                connection.Close();
+
 
             }
+            if (pais == null)
+                throw new Exception("El país que busca no existe en la base de datos.");
             return pais;
 
         }
@@ -62,92 +54,80 @@ namespace Persistencia
         {
 
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-           
+
             SqlCommand command = new SqlCommand("sp_AgregarPais", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
             command.Parameters.Add(new SqlParameter("NOMBRE", pais.Nombre));
 
-            SqlParameter r = new SqlParameter();
-           
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
+            r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-            
 
-
-
-            try 
+            try
             {
                 connection.Open();
                 command.ExecuteNonQuery();
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+                int retorno = (int)command.Parameters["@Retorno"].Value;
 
                 if (retorno == -1)
-                    throw new Exception("YA EXISTE ESE PAIS EN LA BASE DE DATOS");
+                    throw new Exception("El país que intenta agrear no existe en la base de datos");
                 else if (retorno == -2)
-                    throw new Exception("ERROR AL MODIFICAR");
-            } 
-            catch (Exception ex) 
+                    throw new Exception("Error al registrar país.");
+
+                else if (retorno == 1)
+                    throw new Exception("El país fue registrado con éxito.");
+
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            } 
+            }
             finally
-            
-            
             {
 
                 connection.Close();
             }
-
-
         }
 
         public void EditarPais(Pais pais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            
+
             SqlCommand command = new SqlCommand("sp_ModificarPais", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
             command.Parameters.Add(new SqlParameter("NOMBRE", pais.Nombre));
 
 
-            SqlParameter r = new SqlParameter();
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-   
+
 
             try
             {
                 connection.Open();
                 command.ExecuteNonQuery();
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+                int retorno = (int)command.Parameters["@Retorno"].Value;
 
                 if (retorno == -1)
-                    throw new Exception("NO EXISTE EL PAIS");
+                    throw new Exception("El país que intenta editar no existe.");
+                else if (retorno == 1)
+                    throw new Exception("El país fue modificado con éxito ");
                 else if (retorno == -2)
-                    throw new Exception("NO SE PUEDE MODIFICAR, TIENE PRONOSTICOS ASOCIADOS");
-                else if (retorno == -3)
-                    throw new Exception("ERROR AL MODIFICAR");
+                    throw new Exception("Error al modificar el país");
             }
             catch (Exception ex)
-            
+
             {
                 throw new Exception(ex.Message);
-            } 
-            
-            
-            
-            
-            
-            finally
-            {
-
-                connection.Close();
             }
 
-
-
-
+            finally
+            {
+                connection.Close();
+            }
 
         }
 
@@ -156,7 +136,7 @@ namespace Persistencia
         public List<Pais> TodosLosPaises()
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-       
+
             SqlCommand command = new SqlCommand("sp_LISTARTODOSLOSPAISES", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             List<Pais> paises = new List<Pais>();
@@ -167,7 +147,7 @@ namespace Persistencia
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-           
+
                 while (reader.Read())
                 {
                     Pais pais = new Pais(
@@ -180,56 +160,53 @@ namespace Persistencia
 
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            finally 
+            finally
             {
                 connection.Close();
             }
 
 
-
-            
-
-
         }
 
-        public void EliminarPais(Pais pais)
+        public void EliminarPais(string  codpais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
-            
+
             SqlCommand command = new SqlCommand("sp_EliminarPais", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
-            command.Parameters.Add(new SqlParameter("NOMBRE", pais.Nombre));
-
-            SqlParameter r = new SqlParameter();
-            
-            command.Parameters.Add(r);
+            command.Parameters.Add(new SqlParameter("CODIGOPAIS", codpais));
            
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
+            r.Direction = System.Data.ParameterDirection.ReturnValue;
+            command.Parameters.Add(r);
+
 
 
             try
-            { 
-                connection.Open(); 
+            {
+                connection.Open();
                 command.ExecuteNonQuery();
 
-
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+                int retorno = (int)command.Parameters["@Retorno"].Value;
 
                 if (retorno == -1)
-                    throw new Exception("NO EXISTE EL PAIS");
+                    throw new Exception("El país que intenta eliminar no existe");
+                else if (retorno == 1)
+                    throw new Exception("El país fue eliminado con éxito");
                 else if (retorno == -2)
-                    throw new Exception("NO SE PUEDE ELIMINAR EL PAIS, TIENE CIUDADES CON PRONOSTICOS ASOCIADOS");
+                    throw new Exception("No se puede eliminar el país, posee ciudades con pronósticos asosciados.");
                 else if (retorno == -3)
-                    throw new Exception("ERROR");
+                    throw new Exception("Error al eliminar país.");
 
-            } catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            } 
+            }
             finally
 
             {

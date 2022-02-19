@@ -8,19 +8,19 @@ using Persistencia;
 
 namespace Logica
 {
-    class LogPais
+    public class LogPais
     {
         PerPais perpais = new PerPais();
 
         public void RegistrarPais(Pais pais)
         {
             perpais.RegistrarPais(pais);
-       
+
         }
         public void EditarPais(Pais pais)
         {
             perpais.EditarPais(pais);
-         
+
         }
 
         public List<Pais> TodosLosPaises()
@@ -30,10 +30,19 @@ namespace Logica
         }
 
 
-        public void Eliminar(Pais pais)
+        public void Eliminar(string codpais)
         {
-             perpais.EliminarPais(pais);
+            perpais.EliminarPais(codpais);
 
+        }
+
+
+        public Pais Buscar( string codpais)
+        {
+           Pais pais= perpais.BuscarPais(codpais);
+            return pais;
+
+  
         }
 
 

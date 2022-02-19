@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="row">
                             <center>
-                                <img width="64px" src="iconos/iconoUsuario.png">
+                                <img  src="iconos/iconoUsuario.png">
                             </center>
                         </div>
                     </div>
