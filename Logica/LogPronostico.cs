@@ -17,9 +17,9 @@ namespace Logica
         }
 
 
-        public void RegistrarPronostico(Pronostico pronostico,Usuario usuario, Ciudad ciudad, Pais pais)
+        public void RegistrarPronostico(Pronostico pronostico,Usuario usuario, Ciudad ciudad)
         {
-            perPronostico.RegistrarPronostico(pronostico, usuario, ciudad, pais);
+            perPronostico.RegistrarPronostico(pronostico, usuario, ciudad);
   
         }
 

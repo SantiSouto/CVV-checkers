@@ -10,7 +10,7 @@ namespace Entidades
     {
         private string _codigociudad;
         private string _nombreciudad;
-        private Pais _codigopais;
+        private Pais _pais;
 
         public string Codigociudad
         {
@@ -42,25 +42,25 @@ namespace Entidades
         }
         public Pais Pais
         {
-            get { return _codigopais; }
+            get { return _pais; }
             set
             {
                 if (value == null)
                     throw new Exception("-----LA NOTICIA DEBE TENER UN PAIS ASOCIADO----");
 
-                _codigopais = value;
+                _pais = value;
             }
 
         }
 
 
-        public Ciudad(string codigociudad, string nombreciudad, Pais codigopais)
+        public Ciudad(string codigociudad, string nombreciudad, Pais pais)
         {
 
             Codigociudad = codigociudad;
-            Pais = codigopais;
             NombreCiudad = nombreciudad;
-           
+            Pais = pais;
+
         }
         public override string ToString()
         {

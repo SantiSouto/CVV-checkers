@@ -40,19 +40,23 @@ namespace Persistencia
                     ciudad= new Ciudad(
                     reader["CODIGOCIUDAD"].ToString(), reader["NOMBRE"].ToString(), pais);
                     reader.Close();
+                    if (ciudad == null)
+                    throw new Exception("La ciudad que busca no existe en la base de datos.");
 
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+             
+
+                    throw new Exception(ex.Message);
             }
             finally
             {
                 connection.Close();
             }
 
-            if (ciudad == null)
-                throw new Exception("La ciudad que busca no existe en la base de datos.");
+          
+           
             return ciudad;
         }
 
@@ -110,11 +114,9 @@ namespace Persistencia
             SqlCommand command = new SqlCommand("sp_ModificarCiudad", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("CODIGOCIUDAD", ciudad.Codigociudad));
-            command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
             command.Parameters.Add(new SqlParameter("NOMBRE", ciudad.NombreCiudad));
-
-
-            SqlParameter r = new SqlParameter();
+            command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
 
@@ -123,14 +125,16 @@ namespace Persistencia
             {
                 connection.Open();
                 command.ExecuteNonQuery();
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+                int retorno = (int)command.Parameters["@Retorno"].Value;
 
 
 
                 if (retorno == -1)
-                    throw new Exception("NO EXISTE LA CIUDAD");
+                    throw new Exception("La ciudad que desea editar no existe. ");
+                else if (retorno == 1)
+                    throw new Exception("La ciudad fue editada con éxito.");
                 else if (retorno == -2)
-                    throw new Exception("ERROR");
+                    throw new Exception("Error al editar la ciudad.");
 
 
             }
@@ -158,26 +162,26 @@ namespace Persistencia
             command.Parameters.Add(new SqlParameter("CODIGOCIUDAD", ciudad.Codigociudad));
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", ciudad.NombreCiudad));
 
-            SqlParameter r = new SqlParameter();
+            SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
             command.Parameters.Add(r);
-            command.ExecuteNonQuery();
-
-
-
+ 
 
             try
             {
                 connection.Open();
                 command.ExecuteNonQuery();
-                int retorno = (int)command.Parameters[Convert.ToInt32(r.Value)].Value;
+                int retorno = (int)command.Parameters["@Retorno"].Value;
 
 
 
                 if (retorno == -1)
-                    throw new Exception("NO EXISTE LA CIUDAD");
+                    throw new Exception("La ciudad que intenta eliminar no existe.");
+                else if (retorno == 1)
+                    throw new Exception("la ciudad fue eliminada con éxito");
                 else if (retorno == -2)
-                    throw new Exception("ERROR");
+                    throw new Exception("Error al eliminar la ciudad");
+            
             }
 
             catch (Exception ex)
@@ -199,6 +203,7 @@ namespace Persistencia
             SqlCommand command = new SqlCommand("sp_ListarCiudad", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             List<Ciudad> ciudades = new List<Ciudad>();
+            
 
             try
             {
@@ -208,7 +213,7 @@ namespace Persistencia
                 {
                     Pais paisbuscado = perpais.BuscarPais(reader["CODIGOPAIS"].ToString());
 
-                    Ciudad ciudad = new Ciudad(reader["CODIGOCIUDAD"].ToString(), paisbuscado, reader["NOMBRE"].ToString());
+                    Ciudad ciudad = new Ciudad(reader["CODIGOCIUDAD"].ToString(), reader["NOMBRE"].ToString(), paisbuscado);
 
 
                     ciudades.Add(ciudad);

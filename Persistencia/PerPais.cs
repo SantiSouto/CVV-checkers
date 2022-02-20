@@ -29,12 +29,13 @@ namespace Persistencia
                 if (reader.Read())
                     pais = new Pais(reader["CODIGOPAIS"].ToString(), reader["NOMBRE"].ToString());
                 reader.Close();
-
+                if (pais == null)
+                    throw new Exception("El país que busca no existe en la base de datos.");
             }
 
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception( ex.Message);
             }
             finally
 
@@ -43,8 +44,7 @@ namespace Persistencia
 
 
             }
-            if (pais == null)
-                throw new Exception("El país que busca no existe en la base de datos.");
+            
             return pais;
 
         }

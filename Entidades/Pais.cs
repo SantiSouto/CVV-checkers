@@ -18,9 +18,9 @@ namespace Entidades
             set
             {
                 if (value == null)
-                    throw new Exception("\n" + "----DEBE INGRESAR UN CODIGO DE PAIS-----");
+                    throw new Exception("Debe ingresar un código de país");
                 if (value.Trim().Length != 3)
-                    throw new Exception("\n" + "EL CODIGO DEBE SER DE 3 CARACTERES");
+                    throw new Exception("EL CODIGO DEBE SER DE 3 CARACTERES");
                 _codigopais = value;
             }
 
