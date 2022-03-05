@@ -30,9 +30,9 @@ namespace Logica
         }
 
 
-        public void Eliminar(string codpais)
+        public void Eliminar(Pais pais)
         {
-            perpais.EliminarPais(codpais);
+            perpais.EliminarPais(pais);
 
         }
 

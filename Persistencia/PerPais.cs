@@ -75,9 +75,6 @@ namespace Persistencia
                 else if (retorno == -2)
                     throw new Exception("Error al registrar país.");
 
-                else if (retorno == 1)
-                    throw new Exception("El país fue registrado con éxito.");
-
             }
             catch (Exception ex)
             {
@@ -113,8 +110,6 @@ namespace Persistencia
 
                 if (retorno == -1)
                     throw new Exception("El país que intenta editar no existe.");
-                else if (retorno == 1)
-                    throw new Exception("El país fue modificado con éxito ");
                 else if (retorno == -2)
                     throw new Exception("Error al modificar el país");
             }
@@ -172,13 +167,13 @@ namespace Persistencia
 
         }
 
-        public void EliminarPais(string  codpais)
+        public void EliminarPais(Pais pais)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
 
             SqlCommand command = new SqlCommand("sp_EliminarPais", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("CODIGOPAIS", codpais));
+            command.Parameters.Add(new SqlParameter("CODIGOPAIS", pais.CodigoPais));
            
             SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
@@ -195,8 +190,6 @@ namespace Persistencia
 
                 if (retorno == -1)
                     throw new Exception("El país que intenta eliminar no existe");
-                else if (retorno == 1)
-                    throw new Exception("El país fue eliminado con éxito");
                 else if (retorno == -2)
                     throw new Exception("No se puede eliminar el país, posee ciudades con pronósticos asosciados.");
                 else if (retorno == -3)

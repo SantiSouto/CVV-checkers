@@ -74,7 +74,8 @@ public partial class ABM_Usuarios : System.Web.UI.Page
             lblMensaje.Text = string.Empty;
             string logueo = txtNombreUsuario.Text.Trim();
             LogUsuario logusuario = new LogUsuario();
-            logusuario.Eliminar(logueo);
+            Usuario usuariobuscado = logusuario.Buscar(logueo);
+            logusuario.Eliminar(usuariobuscado);
 
         }
         catch (Exception ex)
@@ -102,11 +103,22 @@ public partial class ABM_Usuarios : System.Web.UI.Page
             string logueo = txtNombreUsuario.Text.Trim();
             LogUsuario logusuario = new LogUsuario();
             Usuario usuario = logusuario.Buscar(logueo);
-            txtNombre.Text = usuario.Nombre;
-            txtApellido.Text = usuario.Apellido;
-            txtClave.Text = usuario.Contrasenia;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
+            if(usuario==null)
+            {
+                lblMensaje.Text = " No existe el usuario, Registrar";
+                btnAgregar.Enabled = true;
+            }
+            else
+            {
+                txtNombre.Text = usuario.Nombre;
+                txtApellido.Text = usuario.Apellido;
+                txtClave.Text = usuario.Contrasenia;
+                btnModificar.Enabled = true;
+                btnEliminar.Enabled = true;
+
+            }
+
+
 
 
         }

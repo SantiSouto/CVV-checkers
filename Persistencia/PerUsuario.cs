@@ -90,8 +90,7 @@ namespace Persistencia
                 connection.Close();
         
             }
-                     if (usuario == null)
-                    throw new Exception("El usuario de logueo que busca no existe en la base de datos.");
+                  
             
             return usuario;
         }
@@ -126,8 +125,6 @@ namespace Persistencia
                     throw new Exception("YA EXISTE ESE USUARIO");
                 else if (retorno == -2)
                     throw new Exception("ERROR AL REGISTRAR EL USUARIO");
-                else
-                    throw new Exception("USUARIO REGISTRADO CON EXITO");
 
             }
             catch (Exception ex)
@@ -168,8 +165,6 @@ namespace Persistencia
                     throw new Exception("NO EXISTE ESE USUARIO");
                 else if (retorno == -2)
                     throw new Exception("ERROR AL MODIFICAR EL USUARIO");
-                else
-                    throw new Exception("USUARIO MODIFICADO CON EXITO");
 
             }
             catch (Exception ex)
@@ -183,13 +178,13 @@ namespace Persistencia
 
         }
 
-        public void EliminarUsuario(string logueo)
+        public void EliminarUsuario(Usuario usuario)
         {
             SqlConnection connection = new SqlConnection(Conexion.connectionString);
 
             SqlCommand command = new SqlCommand("sp_EliminarUsuario", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("NOMBRELOGUEO", logueo));
+            command.Parameters.Add(new SqlParameter("NOMBRELOGUEO", usuario.NombreLogueo));
             
             SqlParameter r = new SqlParameter("@Retorno", SqlDbType.Int);
             r.Direction = System.Data.ParameterDirection.ReturnValue;
@@ -208,8 +203,6 @@ namespace Persistencia
                     throw new Exception("NO SE PUEDE ELIMINAR EL USUARIO, TIENE PRONOSTICOS ASOCIADOS");
                 else if (retorno == -3)
                     throw new Exception("ERROR");
-                else
-                    throw new Exception("USUARIO ELIMINADO CON EXITO");
 
 
             }
@@ -225,47 +218,7 @@ namespace Persistencia
 
         }
 
-        public List<Usuario> TodosLosUsuarios()
-        {
-            SqlConnection connection = new SqlConnection(Conexion.connectionString);
-
-            SqlCommand command = new SqlCommand("sp_USUARIOSTODOS", connection);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-
-
-            List<Usuario> usuarios = new List<Usuario>();
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        Usuario usuario = new Usuario(
-                     reader["NOMBRELOGUEO"].ToString(), (reader["CONTRASENIA"].ToString()), reader["NOMBRE"].ToString(), reader["APELLIDO"].ToString());
-                        usuarios.Add(usuario);
-                    }
-                }
-
-                reader.Close();
-
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("Problemas con la base de datos:" + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return usuarios;
-
-
-        }
+       
     }
 }
 

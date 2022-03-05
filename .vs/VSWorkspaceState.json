@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Entidades"
+    "\\Entidades",
+    "\\Persistencia"
   ],
-  "SelectedNode": "\\PronosticoClima.sln",
+  "SelectedNode": "\\Persistencia\\PerCiudad.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -9,9 +9,8 @@ namespace Entidades
    public class Ciudad
     {
         private string _codigociudad;
-        private string _nombreciudad;
         private Pais _pais;
-
+        private string _nombreciudad;
         public string Codigociudad
         {
             get { return _codigociudad; }
@@ -25,21 +24,7 @@ namespace Entidades
             }
 
         }
-  
 
-        public string NombreCiudad
-        {
-            get { return _nombreciudad; }
-            set
-            {
-                if (string.IsNullOrEmpty(value.Trim()))
-                    throw new Exception("\n" + "----DEBE HABER UN NOBRE PARA LA CIUDAD----");
-                if (value.Length > 30)
-                    throw new Exception("\n" + "EL NOMBRE DE LA CIUDAD NO PUEDE TENER MAS DE 30 CARACTERES");
-                _nombreciudad = value;
-            }
-
-        }
         public Pais Pais
         {
             get { return _pais; }
@@ -54,17 +39,33 @@ namespace Entidades
         }
 
 
-        public Ciudad(string codigociudad, string nombreciudad, Pais pais)
+        public string NombreCiudad
+        {
+            get { return _nombreciudad; }
+            set
+            {
+                if (string.IsNullOrEmpty(value.Trim()))
+                    throw new Exception("\n" + "----DEBE HABER UN NOBRE PARA LA CIUDAD----");
+                if (value.Length > 30)
+                    throw new Exception("\n" + "EL NOMBRE DE LA CIUDAD NO PUEDE TENER MAS DE 30 CARACTERES");
+                _nombreciudad = value;
+            }
+
+        }
+
+
+
+        public Ciudad(string codigociudad, Pais pais, string nombreciudad)
         {
 
             Codigociudad = codigociudad;
-            NombreCiudad = nombreciudad;
             Pais = pais;
+            NombreCiudad = nombreciudad;
 
         }
         public override string ToString()
         {
-            return "CODIGO CIUDAD:" + Codigociudad + "\t" + "NOMBRECIUDAD" + NombreCiudad + "\t" + "CODIGOPAIS:" + Pais.ToString();
+            return "CODIGO CIUDAD:" + Codigociudad + "\t"  + "CODIGOPAIS:" + Pais.ToString() + "NOMBRECIUDAD" + NombreCiudad;
         }
 
     }

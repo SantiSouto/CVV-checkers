@@ -68,7 +68,7 @@
                                 <a class="nav-link" >Pronósticos por Ciudad</a>
                             </li>
                                 <li class="nav-item">
-                                <a class="nav-link" >Pronósticos por Día</a>
+                                <a class="nav-link" href="ABM_PronósticosParaElDia.aspx" >Pronósticos por Día</a>
                             </li>
               
                         </ul>

@@ -31,18 +31,13 @@ namespace Logica
 
         }
 
-        public void Eliminar(string logueo)
+        public void Eliminar(Usuario usuario)
         {
-            perusuario.EliminarUsuario(logueo);
+            perusuario.EliminarUsuario(usuario);
 
            
         }
 
-        public List<Usuario> ListarTodosLosUsuarios()
-        {
-           return  perusuario.TodosLosUsuarios();
-          
-        }
 
         public Usuario Buscar(string nombrelogueo)
         {

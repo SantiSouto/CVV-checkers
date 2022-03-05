@@ -19,6 +19,7 @@ public partial class ABM_Ciudad : System.Web.UI.Page
 
     protected void btnLimpiar_Click(object sender, EventArgs e)
     {
+        
         LimpiarFormulario();
     }
 
@@ -45,9 +46,10 @@ public partial class ABM_Ciudad : System.Web.UI.Page
         try
         {
             lblMensaje.Text = string.Empty;
-            string cod = txtCodCiudad.Text.Trim();
+            string codigociudad = txtCodCiudad.Text.Trim();
+            string codigopais = txtCodigoPais.Text.Trim();
             LogicaCiudad logciudad = new LogicaCiudad();
-            Ciudad ciudad = logciudad.Buscar(cod);
+            Ciudad ciudad = logciudad.Buscar(codigociudad,codigopais);
             txtCodCiudad.Text = ciudad.Codigociudad;
             txtNombreCiudad.Text = ciudad.NombreCiudad;
             txtCodigoPais.Text = ciudad.Pais.CodigoPais;
@@ -77,9 +79,9 @@ public partial class ABM_Ciudad : System.Web.UI.Page
             LogPais logpais = new LogPais();
             string cod = txtCodigoPais.Text.Trim();
             Pais pais = logpais.Buscar(cod);
-            Ciudad ciudad = new Ciudad(txtCodCiudad.Text.Trim() , txtNombreCiudad.Text.Trim(), pais);
+            Ciudad ciudad = new Ciudad(txtCodCiudad.Text.Trim(), pais, txtNombreCiudad.Text.Trim());
             LogicaCiudad logciudad = new LogicaCiudad();
-            logciudad.RegistrarCiudad(ciudad, pais);
+            logciudad.RegistrarCiudad(ciudad);
             LimpiarFormulario();
 
         }
@@ -112,9 +114,9 @@ public partial class ABM_Ciudad : System.Web.UI.Page
             LogPais logpais = new LogPais();
             string cod = txtCodigoPais.Text.Trim();
             Pais pais = logpais.Buscar(cod);
-            Ciudad ciudad = new Ciudad(txtCodCiudad.Text.Trim(), txtNombreCiudad.Text.Trim(), pais);
+            Ciudad ciudad = new Ciudad(txtCodCiudad.Text.Trim(), pais, txtNombreCiudad.Text.Trim());
             LogicaCiudad logciudad = new LogicaCiudad();
-            logciudad.EditarCiudad(ciudad, pais);
+            logciudad.EditarCiudad(ciudad);
 
         }
         catch (Exception ex)

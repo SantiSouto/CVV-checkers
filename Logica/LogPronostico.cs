@@ -17,20 +17,20 @@ namespace Logica
         }
 
 
-        public void RegistrarPronostico(Pronostico pronostico,Usuario usuario, Ciudad ciudad)
+        public void RegistrarPronostico(Pronostico pronostico)
         {
-            perPronostico.RegistrarPronostico(pronostico, usuario, ciudad);
+            perPronostico.RegistrarPronostico(pronostico);
   
         }
 
-        public List<Pronostico> PronosticosPorCiudad()
+        public List<Pronostico> PronosticosPorCiudad(Ciudad ciudad)
         {
-            return perPronostico.PronosticoPorCiudad();
+            return perPronostico.PronosticoPorCiudad(ciudad);
         }
 
-        public List<Pronostico> PronosticosPorFecha()
+        public List<Pronostico> PronosticosPorFecha(DateTime pronosticoporfecha)
         {
-            return perPronostico.PronosticoPorFecha();
+            return perPronostico.PronosticoPorFecha(pronosticoporfecha);
         }
     }
 }

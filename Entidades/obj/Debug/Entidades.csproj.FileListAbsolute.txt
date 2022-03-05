@@ -10,3 +10,9 @@ C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.
 C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.dll
 C:\Users\silve\Source\Repos\proyectofinal1\Entidades\obj\Debug\Entidades.pdb
+C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\bin\Debug\Entidades.dll
+C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\bin\Debug\Entidades.pdb
+C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.dll
+C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.pdb

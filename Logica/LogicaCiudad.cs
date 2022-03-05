@@ -16,35 +16,35 @@ namespace Logica
 
         private PerCiudad perciudad = new PerCiudad();
 
-        public void RegistrarCiudad(Ciudad ciudad, Pais pais)
+        public void RegistrarCiudad(Ciudad ciudad)
         {
 
-            perciudad.RegistrarCiudad(ciudad, pais);
+            perciudad.RegistrarCiudad(ciudad);
 
         }
 
-        public void EditarCiudad(Ciudad ciudad, Pais pais)
+        public void EditarCiudad(Ciudad ciudad)
         {
-            perciudad.EditarCiudad(ciudad, pais);
+            perciudad.EditarCiudad(ciudad);
   
         }
 
-        public void Eliminar(Ciudad ciudad,Pais pais)
+        public void Eliminar(Ciudad ciudad)
         {
-            perciudad.EliminarCiudad(ciudad, pais);
+            perciudad.EliminarCiudad(ciudad);
             
         
         }
-        public List<Ciudad> TodosLasCiudades()
+        public List<Ciudad> TodosLasCiudades(Pais pais)
         {
-            return perciudad.TodosLasCiudades();
+            return perciudad.CiudadPorPais(pais);
 
         }
 
 
-        public Ciudad Buscar(string codciudad) 
+        public Ciudad Buscar(string codigociudad, string codigopais) 
         {
-            Ciudad ciudad= perciudad.Buscar(codciudad);
+            Ciudad ciudad= perciudad.Buscar(codigociudad,codigopais);
             return ciudad;
         }
 

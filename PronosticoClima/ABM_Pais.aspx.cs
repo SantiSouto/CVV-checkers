@@ -136,7 +136,8 @@ public partial class ABM_Pais : System.Web.UI.Page
 
             string cod = txtCodPais.Text.Trim();
             LogPais logpais = new LogPais();
-            logpais.Eliminar(cod);
+            Pais pais = logpais.Buscar(cod);
+            logpais.Eliminar(pais);
        
 
         }
