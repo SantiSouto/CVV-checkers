@@ -58,9 +58,10 @@
                                      <br />
                                      <br />
                                     <asp:Button class="btn btn-outline-primary" ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click"  />
+                               
                           
-                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                     <asp:ImageButton ID="btnLimpiar" runat="server" ImageUrl="~/iconos/icons8-broom-64.png" OnClick="btnLimpiar_Click" />
+                                     <asp:Button class="btn btn-outline-primary" ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" />
+                               
                           
                                      </div>
                             </center>

@@ -160,7 +160,9 @@ public partial class ABM_Usuarios : System.Web.UI.Page
 
 
 
-    protected void btnLimpiar_Click(object sender, ImageClickEventArgs e)
+ 
+
+    protected void btnLimpiar_Click(object sender, EventArgs e)
     {
         LimpiarFormulario();
     }

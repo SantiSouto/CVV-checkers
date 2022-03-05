@@ -32,9 +32,12 @@ public partial class ABM_Ciudad : System.Web.UI.Page
         btnEliminar.Enabled = false;
         btnBuscar.Enabled = true;
         txtCodCiudad.Enabled = true;
+        txtCodigoPais.Enabled = true;
+        txtNombreCiudad.Enabled = false;
         txtCodCiudad.Text = string.Empty;
         txtNombreCiudad.Text = string.Empty;
         txtCodigoPais.Text = string.Empty;
+        
         lblMensaje.Text = string.Empty;
         txtCodCiudad.Focus();
     }
@@ -51,8 +54,9 @@ public partial class ABM_Ciudad : System.Web.UI.Page
             LogicaCiudad logciudad = new LogicaCiudad();
             Ciudad ciudad = logciudad.Buscar(codigociudad,codigopais);
             txtCodCiudad.Text = ciudad.Codigociudad;
-            txtNombreCiudad.Text = ciudad.NombreCiudad;
             txtCodigoPais.Text = ciudad.Pais.CodigoPais;
+            txtNombreCiudad.Text = ciudad.NombreCiudad;
+     
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
 
@@ -66,8 +70,8 @@ public partial class ABM_Ciudad : System.Web.UI.Page
 
         {   
             txtCodCiudad.Enabled = false;
+            txtCodigoPais.Enabled = false;
             txtNombreCiudad.Enabled = true;
-            txtCodigoPais.Enabled = true;
             txtNombreCiudad.Focus();
         }
     }
@@ -83,6 +87,7 @@ public partial class ABM_Ciudad : System.Web.UI.Page
             LogicaCiudad logciudad = new LogicaCiudad();
             logciudad.RegistrarCiudad(ciudad);
             LimpiarFormulario();
+            lblMensaje.Text = "Ciudad agregada con éxito.";
 
         }
         catch (Exception ex)
@@ -94,8 +99,8 @@ public partial class ABM_Ciudad : System.Web.UI.Page
         finally
         {
             txtCodCiudad.Enabled = true;
+            txtCodigoPais.Enabled = true;
             txtNombreCiudad.Enabled = false;
-            txtCodigoPais.Enabled = false;
             txtCodCiudad.Focus();
         }
     }
@@ -117,7 +122,8 @@ public partial class ABM_Ciudad : System.Web.UI.Page
             Ciudad ciudad = new Ciudad(txtCodCiudad.Text.Trim(), pais, txtNombreCiudad.Text.Trim());
             LogicaCiudad logciudad = new LogicaCiudad();
             logciudad.EditarCiudad(ciudad);
-
+            LimpiarFormulario();
+            lblMensaje.Text = "Ciudad modificada con éxito.";
         }
         catch (Exception ex)
         {
@@ -128,8 +134,8 @@ public partial class ABM_Ciudad : System.Web.UI.Page
         finally
         {
             txtCodCiudad.Enabled = true;
+            txtCodigoPais.Enabled = true;
             txtNombreCiudad.Enabled = false;
-            txtCodigoPais.Enabled = false;
             txtCodCiudad.Focus();
 
         }
@@ -138,5 +144,30 @@ public partial class ABM_Ciudad : System.Web.UI.Page
     protected void btnEliminar_Click(object sender, EventArgs e)
     {
 
+        try 
+        {
+            lblMensaje.Text = string.Empty;
+            LogPais logpais = new LogPais();
+            string cod = txtCodigoPais.Text.Trim();
+            Pais pais = logpais.Buscar(cod);
+            Ciudad ciudad = new Ciudad(txtCodCiudad.Text.Trim(), pais, txtNombreCiudad.Text.Trim());
+            LogicaCiudad logciudad = new LogicaCiudad();
+            logciudad.Eliminar(ciudad);
+            LimpiarFormulario();
+            lblMensaje.Text = "Ciudad eliminada con éxito.";
+        } 
+        catch (Exception ex) 
+        {
+            LimpiarFormulario();
+            lblMensaje.Text = ex.Message;
+        } 
+        finally 
+        {
+            txtCodCiudad.Enabled = true;
+            txtCodigoPais.Enabled = true;
+            txtNombreCiudad.Enabled = false;
+          
+            txtCodCiudad.Focus();
+        }
     }
 }

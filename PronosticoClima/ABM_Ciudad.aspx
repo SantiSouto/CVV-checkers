@@ -38,15 +38,16 @@
                                 <asp:TextBox ID="txtCodCiudad" runat="server"></asp:TextBox>
 
                         </div>
-                        <div class="container-sm">
-                            <asp:Label class="form-label" runat="server" ID="lblNomCiudad">Nombre Ciudad</asp:Label>
-                            &nbsp
-                                <asp:TextBox ID="txtNombreCiudad" runat="server"></asp:TextBox>
-                        </div>
+                 
                         <div class="container-sm">
                             <asp:Label class="form-label" runat="server" ID="lblCodigoPais">Código País</asp:Label>
                             &nbsp
                                 <asp:TextBox ID="txtCodigoPais" runat="server"></asp:TextBox>
+                                   <div class="container-sm">
+                            <asp:Label class="form-label" runat="server" ID="lblNomCiudad">Nombre Ciudad</asp:Label>
+                            &nbsp
+                                <asp:TextBox ID="txtNombreCiudad" runat="server"></asp:TextBox>
+                        </div>
 
                         </div>
                         <br />
