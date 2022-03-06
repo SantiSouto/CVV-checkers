@@ -16,3 +16,9 @@ C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.c
 C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.dll
 C:\Users\matia\Desktop\Pronostico\proyectofinal1\Entidades\obj\Debug\Entidades.pdb
+C:\Users\silve\OneDrive\Escritorio\proyectofinal1\Entidades\bin\Debug\Entidades.dll
+C:\Users\silve\OneDrive\Escritorio\proyectofinal1\Entidades\bin\Debug\Entidades.pdb
+C:\Users\silve\OneDrive\Escritorio\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\silve\OneDrive\Escritorio\proyectofinal1\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\silve\OneDrive\Escritorio\proyectofinal1\Entidades\obj\Debug\Entidades.dll
+C:\Users\silve\OneDrive\Escritorio\proyectofinal1\Entidades\obj\Debug\Entidades.pdb

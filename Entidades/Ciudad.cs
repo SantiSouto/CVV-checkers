@@ -25,6 +25,8 @@ namespace Entidades
 
         }
 
+       
+
         public Pais Pais
         {
             get { return _pais; }
@@ -53,7 +55,10 @@ namespace Entidades
 
         }
 
-
+        public string CodigoPais
+        {
+            get { return Pais.CodigoPais; }
+        }
 
         public Ciudad(string codigociudad, Pais pais, string nombreciudad)
         {

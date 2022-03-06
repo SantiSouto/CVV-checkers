@@ -43,6 +43,23 @@ namespace Entidades
             }
         }
 
+        public string NombreCiudad
+        {
+            get { return _ciudad.NombreCiudad; }
+
+
+
+        }
+
+
+
+        public string NombreUsuario
+        {
+            get { return _usuario.Nombre; }
+
+
+
+        }
 
 
 

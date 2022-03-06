@@ -45,5 +45,12 @@ namespace Logica
             return usuario;
         }
 
+
+        public Usuario Logueo(string usu, string clave)
+        {
+            Usuario usuario = perusuario.IdentificarUsuario(usu, clave);
+                return usuario;
+        }
+
     }
 }

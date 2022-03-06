@@ -74,7 +74,7 @@ namespace Persistencia
             SqlCommand command = new SqlCommand("sp_RegistrarPronostico", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("NOMBRELOGUEO",pronostico.Usuario.NombreLogueo));
-            command.Parameters.Add(new SqlParameter("CIUDAD", pronostico.Ciudad.Codigociudad));
+            command.Parameters.Add(new SqlParameter("CODIGOCIUDAD", pronostico.Ciudad.Codigociudad));
             command.Parameters.Add(new SqlParameter("CODIGOPAIS", pronostico.Ciudad.Pais.CodigoPais));
             command.Parameters.Add(new SqlParameter("TMAXIMA", pronostico.Tmaxima));
             command.Parameters.Add(new SqlParameter("Tminima", pronostico.Tminima));

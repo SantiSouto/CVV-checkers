@@ -62,7 +62,7 @@
                                 <a class="nav-link" href="ABM_Usuarios.aspx" >Usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" >Registrar Pronóstico</a>
+                                <a class="nav-link" href="Registrar_Pronostico.aspx" >Registrar Pronóstico</a>
                             </li>
                                 <li class="nav-item">
                                 <a class="nav-link" href="ABM_PronosticoPorCiudad.aspx" >Pronósticos por Ciudad</a>

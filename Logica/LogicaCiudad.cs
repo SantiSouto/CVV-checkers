@@ -42,6 +42,11 @@ namespace Logica
         }
 
 
+        public List<Ciudad> CiudadPorPais(Pais pais)
+        {
+            return perciudad.CiudadPorPais(pais);
+        }
+
         public Ciudad Buscar(string codigociudad, string codigopais) 
         {
             Ciudad ciudad= perciudad.Buscar(codigociudad,codigopais);

@@ -18,9 +18,18 @@ namespace Logica
 
 
         public void RegistrarPronostico(Pronostico pronostico)
+
+
         {
-            perPronostico.RegistrarPronostico(pronostico);
-  
+            if (pronostico.FechaHora < DateTime.Now)
+            {
+                throw new Exception("El pronóstico debe ser para una fecha futura.");
+            }
+            else 
+            { 
+                perPronostico.RegistrarPronostico(pronostico); 
+            }
+
         }
 
         public List<Pronostico> PronosticosPorCiudad(Ciudad ciudad)
