@@ -1,0 +1,8 @@
+requests
+colorama
+bs4
+jsonify
+Faker
+tqdm
+termcolor
+stripe
