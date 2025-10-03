@@ -5,4 +5,7 @@ jsonify
 Faker
 tqdm
 termcolor
-stripe
+pycryptodome
+psutil
+httpx
+aiohttp
