@@ -14,7 +14,7 @@ This checker uses the Stripe API with a live publishable key (pk_live). It verif
  - ``https://github.com/KianSantang777/CVV-checkers.git``
  - ``cd CVV-checkers``
  - ``pip install -r requirements.txt``
- - ``python chktools.py``
+ - ``python auth.py``
 
 ### [+] Screenshot
 ![screenshot](https://raw.githubusercontent.com/KianSantang777/CVV-checkers/refs/heads/main/1.png)
