@@ -8,4 +8,6 @@ termcolor
 pycryptodome
 psutil
 httpx
+httpx[http2]
 aiohttp
+
