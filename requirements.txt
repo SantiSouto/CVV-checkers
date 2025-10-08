@@ -10,4 +10,6 @@ psutil
 httpx
 httpx[http2]
 aiohttp
-
+psutil
+rich
+futures
