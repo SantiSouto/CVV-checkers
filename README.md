@@ -34,7 +34,7 @@ This checker uses the Stripe API with a live publishable key (pk_live). It verif
  - Support all device: **Termux, CMD, Linux, etc**
 
 ### [+] Requirements
-- python 3.13.7
+- Python 3.12.0
 
 ### [+] Credits 
 <a href="https://github.com/KianSantang777/CVV-checkers">Kiansantang DEV</a>
