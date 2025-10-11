@@ -10,11 +10,19 @@
 ### [+] Description
 This checker uses the Stripe API with a live publishable key (pk_live). It verifies each card by attempting to add it as a payment method. If that succeeds, the card is marked LIVE.
 
-### [+] Installation
- - ``https://github.com/KianSantang777/CVV-checkers.git``
- - ``cd CVV-checkers``
- - ``pip install -r requirements.txt``
- - ``python auth.py``
+### [+] Installation Termux
+```
+- termux-setup-storage
+- apt update && apt upgrade -y
+- apt install git python python nano
+- git clone https://github.com/KianSantang777/CVV-checkers.git
+- cd CVV-checkers
+- chmod +x auth2.py
+- python -m pip install -r requirements.txt
+- pip install --upgrade pip
+- pip install pycryptodome httpx[http2] requests asyncio aiofiles aiohttp
+- python auth2.py
+```
 
 ### [+] Screenshot
 ![screenshot](https://raw.githubusercontent.com/KianSantang777/CVV-checkers/refs/heads/main/1.png)
